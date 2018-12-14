@@ -8,7 +8,10 @@ Given an array of integers where every integer occurs three times except for one
 For example, given [6, 1, 3, 3, 3, 6, 6], return 1. Given [13, 19, 13, 13], return 19.
 
 Do this in O(N) time and O(1) space.
+'''
 
+'''
+References:
 https://stackoverflow.com/questions/14100169/find-the-element-that-appears-once
 https://www.quora.com/Given-an-integer-array-such-that-every-element-occurs-3-times-except-one-element-which-occurs-only-once-how-do-I-find-that-single-element-in-O-1-space-and-O-n-time-complexity
 https://www.careercup.com/question?id=7902674
@@ -20,8 +23,8 @@ Notes:
 '''
 
 
-
-def get_unique_integer(arr):
+# don't like this solution
+def get_unique_integer2(arr):
     ones = 0
     twos = 0
     #not_threes
@@ -31,16 +34,14 @@ def get_unique_integer(arr):
         ones ^= x # if x is in ones, remove it, else add it
 
         # convert common 1's in ones and twos to 0
-        # Sean 11/11/18: don't know why this is necessary
-
         not_threes = ~(ones & twos)
         ones &= not_threes
         twos &= not_threes
 
     return ones
 
-
-def get_unique_integer2(arr):
+# prefer this solution
+def get_unique_integer(arr):
     ones = 0
     twos = 0
 
@@ -86,6 +87,6 @@ x2 = [13, 19, 13, 13] # should return 19; sum=58, n=4
 x3 = [1,2,3,4,5,1,2,3,4,1,2,3,4] # should return 5; sum=35, n=13
 
 
-print(f"x1: {get_unique_integer2(x1)}")
-print(f"x2: {get_unique_integer2(x2)}")
-print(f"x3: {get_unique_integer2(x3)}")
+print(f"x1: {get_unique_integer(x1)}")
+print(f"x2: {get_unique_integer(x2)}")
+print(f"x3: {get_unique_integer(x3)}")

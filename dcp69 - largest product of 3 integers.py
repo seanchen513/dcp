@@ -10,24 +10,26 @@ For example, if the list is [-10, -10, 5, 2], we should return 500, since that's
 You can assume the list has at least three integers.
 '''
 
+# TO DO: other solutions...
+
 # Idea: two negative integers might be used to form product,
-# so need to keep track of largest 2 negatives by magnitude.
-# Also need to keep track of largest 3 positives.
+# so need to keep track of 2 largest negatives by magnitude.
+# Also need to keep track of 3 largest positives.
 
 # special case: what if at least one 0 in array and 0 is largest product?
 # Must mean there is at most one negative, and at most 2 positive.
 
 # WITH SORTING.
-# Assume a is array of integers with at least 3 integers (if not, return -1).
+# Assume "a" is array of integers with at least 3 integers (if not, return -1).
 # O(n log n) time, O(1) space
 def find_largest_product(a):
     n = len(a) - 1 # last index
-    if n < 3:
+    if n < 2:
         return -1
 
     a.sort()
 
-    p1 = a[n-2]*a[n-1]*a[n]
+    p1 = a[n-2] * a[n-1] * a[n]
     
     #if a[1] < 0: # there are at least 2 negative numbers
     #    p2 = a[0]*a[1]*a[n]
@@ -35,7 +37,7 @@ def find_largest_product(a):
     #
     #return p1
 
-    p2 = a[0]*a[1]*a[n]
+    p2 = a[0] * a[1] * a[n]
     return max(p1, p2)
 
 a = [-10, -10, 5, 2] # orig; answer = 500
