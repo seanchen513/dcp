@@ -20,11 +20,11 @@ Optimal substructure property:
 Given array a, indexed 0..n-1
 
 Let L(i) = length of LIS ending at index i, where 0 <= i <= n-1
-Let S(i) = LIS ending at index i
+Let T(i) = LIS ending at index i
 
 L(i) = 1 + max{L(j): 0 <= j < i and a(j) < a(i)}
 
-S(i) = concatenated sequence [ S(j), a[i] ] where S(j)...
+T(i) = concatenated sequence [ T(j), a[i] ] where T(j)...
 
 Length of LIS for a = max{L(i) : 0 <= 1 <= n-1 }
 
@@ -32,27 +32,28 @@ Length of LIS for a = max{L(i) : 0 <= 1 <= n-1 }
 
 # Returns an increasing subsequence of "a" of maximum length.
 # Uses dynamic programming using tabulation (bottom-up).
-# Creates table L where L[i] = a max-legnth increasing subsequence of "a" that ends with a[i]
+# Creates table T where T[i] = a max-length increasing subsequence of "a" that ends with a[i]
 # O(n^2)
 # Note: there may be more than one max-length inc subsequence of "a" that ends with a[i]
 # but the table only stores one of them.
 def construct_LIS_table(a):
     n = len(a)
-    L = [[] for x in range(n)]
-    L[0] = [a[0]]
+    T = [[] for x in range(n)]
+    T[0] = [a[0]]
 
     for i in range(1, n):
-        # define L[i] = sequence concatenation of max{ L(j): j < i } and a[i]
+        # define T[i] = sequence concatenation of max{ T(j): j < i } and a[i]
         for j in range(0, i):
-            if ( a[j] < a[i] ) and ( len(L[j]) > len(L[i]) ):
-                # L[i] = L[j].copy() # Python 3.3+
-                # L[i] = list( L[j] )
-                L[i] = L[j][:]
+            if ( a[j] < a[i] ) and ( len(T[j]) > len(T[i]) ):
+                # T[i] = T[j].copy() # Python 3.3+
+                # T[i] = list( T[j] )
+                T[i] = T[j][:]
 
-        L[i].append(a[i])
+        T[i].append( a[i] )
 
-    # L[i] now stores increasing subsequence of "a" that ends with a[i]
-    return L
+    # T[i] now stores increasing subsequence of "a" that ends with a[i]
+    return T
+
 
 # Given table as constructed by construct_LIS_table(), returns list of subsequences of max length
 # that are contained in the table.  Note that construct_LIS_table() doesn't return
