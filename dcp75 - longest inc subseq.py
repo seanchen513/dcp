@@ -79,8 +79,11 @@ def g(a, n, subseq, max_length):
 
 
 # Returns an increasing subsequence of "a" of maximum length.
-# Uses dynamic programming using tabulation (bottoms-up).
+# Uses dynamic programming using tabulation (bottom-up).
+# Creates table L where L[i] = a max-legnth increasing subsequence of "a" that ends with a[i]
 # O(n^2)
+# Note: there may be more than one max-length inc subsequence of "a" that ends with a[i]
+# but the table only stores one of them.
 def construct_LIS_table(a):
     n = len(a)
     L = [[] for x in range(n)]
@@ -90,20 +93,30 @@ def construct_LIS_table(a):
         # define L[i] = sequence concatenation of max{ L(j): j < i } and a[i]
         for j in range(0, i):
             if ( a[j] < a[i] ) and ( len(L[j]) > len(L[i]) ):
-                L[i] = L[j].copy() # !!!
+                # L[i] = L[j].copy() # Python 3.3+
+                # L[i] = list( L[j] )
+                L[i] = L[j][:]
 
         L[i].append(a[i])
 
     # L[i] now stores increasing subsequence of "a" that ends with a[i]
     return L
 
+# Given table as constructed by construct_LIS_table(), returns list of subsequences of max length
+# that are contained in the table.  Note that construct_LIS_table() doesn't return
+# all sequences of max length for each given index.
 def get_LIS(table):
-    max = table[0] # to hold subsequence of max length
+    max_length = len(table[0])
+    maxes = [table[0]] # to hold subsequences of max length
+    
     for x in table:
-        if len(x) > len(max):
-            max = x
+        if len(x) > max_length:
+            maxes = [x]
+            max_length = len(x)
+        elif len(x) == max_length:
+            maxes.append(x)
 
-    return max
+    return maxes
 
 
 
@@ -117,8 +130,8 @@ a = [0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
 # seq = g(a, n-1, subseq, max_length)
 
 table = construct_LIS_table(a)
-subseq = get_LIS(table)
-max_length = len(subseq)
+subseqs = get_LIS(table)
+max_length = len(subseqs[0])
 
 print("original array: {}".format(a))
 
@@ -126,7 +139,9 @@ print("\nLIS table:")
 for i, x in enumerate(table):
     print("{}: {}".format(i, x))
 
-print("\nan inc subseq of max length: {}".format(subseq))
-print("max_length: {}".format(max_length))
-#print("length: {}".format(len(seq)))
+print("\nmax_length: {}".format(max_length))
+print("\ninc subsequences of max length:")
+print(subseqs)
+
+
 
