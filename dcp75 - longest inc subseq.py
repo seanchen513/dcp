@@ -10,36 +10,7 @@ For example, given the array [0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 
 the longest increasing subsequence has length 6: it is 0, 2, 6, 9, 11, 15.
 '''
 
-
-
-def f2(a, subseq):
-    last_val = subseq[-1]
-
-    for i in range(0, len(a)):
-        if a[i] > last_val:
-            subseq.append(a[i])
-            subseq.append(f2(a[i+1:], subseq))
-
-    return subseq
-
-
-def f1(a, subseq = []):
-    if subseq is []:
-        for i in range(0, len(a)):
-            subseq.append(a[0])
-            return f(a[1:], subseq)
-
-    else:
-    
-        for i in range(0, len(a)):
-            if (a[i] > subseq[-1]):
-                subseq = f(a[i+1:], a[i])
-                length = len(subseq)
-                if length > max_len:
-                    max_len = length
-                    max_subseq = subseq
-
-        return 
+# I give up on naive, recursive solution.
 
 '''
 Longest increasing subsequence (LIS)
@@ -58,25 +29,6 @@ S(i) = concatenated sequence [ S(j), a[i] ] where S(j)...
 Length of LIS for a = max{L(i) : 0 <= 1 <= n-1 }
 
 '''
-
-
-def g(a, n, subseq, max_length):
-    if n == 1:
-        return 1
-    
-    max_ending_here = 0
-
-    for i in range(0, n-1):
-        res = g(a, i, subseq, max_length)
-
-        if (a[i] < a[n-1]) and (res + 1 > max_ending_here):
-            max_ending_here = res + 1
-
-    if max_length < max_ending_here:
-        max_length = max_ending_here
-
-    return max_ending_here
-
 
 # Returns an increasing subsequence of "a" of maximum length.
 # Uses dynamic programming using tabulation (bottom-up).
