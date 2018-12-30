@@ -47,10 +47,10 @@ def get_unique_integer(arr):
 
     for x in arr:
         # ones ^ x : if x is in ones, remove it, else add it
-        # (ones & x) & ~twos : let x stay in ones if it was added (wasn't in ones in the first place) and it's not in twos
+        # (ones ^ x) & ~twos : let x stay in ones if it was added (wasn't in ones in the first place) and if it's not in twos
         ones = (ones ^ x) & ~twos
 
-        # twos & x : if x is in twos, remove it, else add it
+        # twos ^ x : if x is in twos, remove it, else add it
         # (twos ^ x) & ~ones : let x stay in twos if it was added (wasn't in twos in the first place) and if it's not in ones
         twos = (twos ^ x) & ~ones
 
