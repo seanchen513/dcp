@@ -21,7 +21,7 @@ for f in functions:
 # all refer to the same i.
 
 
-# solution #1
+# solution #1: use local variable
 functions = []
 for i in range(10):
     functions.append(lambda i=i: i)         # works if called with f()
@@ -35,17 +35,19 @@ for f in functions:
     #print(f(0))
 
 
-# solution #2
+# solution #2: use function generator
 functions2 = []
 for k in range(10):
     def fng(n): # function generator
-        def func(x): return n
+        def func(): return n
+        #def func(x): return n
         return func
 
     functions2.append(fng(k)) # invoke function generator instead
 
 print()
 for f in functions2:
-    print(f(0))
+    print(f())
+    #print(f(0))
 
 
