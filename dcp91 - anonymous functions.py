@@ -24,11 +24,15 @@ for f in functions:
 # solution #1
 functions = []
 for i in range(10):
-    functions.append(lambda j, i=i: i)
-    #functions.append(lambda j, i2=i: i2) # same effect
+    functions.append(lambda i=i: i)         # works if called with f()
+    #functions.append(lambda i2=i: i2)      # also works if called with f()
+    #functions.append(lambda j=0, i=i: i)   # also works if called with f()
+    #functions.append(lambda j, i=i: i)     # also works if called with f(0)
+    #functions.append(lambda j, i2=i: i2)   # also works if called with f(0)
 
 for f in functions:
-    print(f(0))
+    print(f())
+    #print(f(0))
 
 
 # solution #2
