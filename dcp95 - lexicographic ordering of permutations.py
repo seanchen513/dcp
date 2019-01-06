@@ -39,7 +39,7 @@ def next(a):
     a[index_m] = ak
     #print("after swap, list = {}\n".format(a))
 
-    ### reverse list to right of index k
+    ### reverse list to right of index k to sort it
     return a[:k+1] + a[-1:k:-1]
 
 
