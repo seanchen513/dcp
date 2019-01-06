@@ -21,11 +21,7 @@ def all_perms(a, n, k, p):
 
     for i in range(k, n):        
         b = a[:]
-
-        if i > k:
-            temp = b[k]
-            b[k] = b[i]
-            b[i] = temp
+        b[i], b[k] = b[k], b[i]
 
         all_perms(b, n, k+1, p)
 
