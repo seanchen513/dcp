@@ -40,6 +40,40 @@ def deepest(root, deepest_nodes = [], max_depth = 0, depth = 0):
     return deepest_nodes, max_depth
 
 
+# Assume root is not None
+def deepest2(root, deepest_nodes, max_depth = 0, depth = 0):
+    depth += 1
+
+    if depth > max_depth:
+        max_depth = depth
+        # deepest_nodes = [root] # cannot do this...
+        deepest_nodes.clear()
+        deepest_nodes.append(root)
+    elif depth == max_depth:
+        deepest_nodes.append(root)
+
+    if root.left is not None:
+        max_depth = deepest2(root.left, deepest_nodes, max_depth, depth)
+
+    if root.right is not None:
+        max_depth = deepest2(root.right, deepest_nodes, max_depth, depth)
+
+    return max_depth
+
+
+def test(root):
+    #deepest_nodes, max_depth = deepest(tree)
+    
+    deepest_nodes = []
+    max_depth = deepest2(tree, deepest_nodes)
+
+    print("Max depth = {}".format(max_depth))
+    print("\nDeepest nodes = ")
+
+    for node in deepest_nodes:
+        print(node.val)
+
+
 # max_depth = 1
 tree = Node('a') 
 
@@ -57,13 +91,6 @@ tree = Node('a',
 # max_depth = 3
 tree = Node('a', 
     Node('b',
-        Node('d')),
-    Node('c',
-        Node('e')))
-
-# max_depth = 3
-tree = Node('a', 
-    Node('b',
         Node('d'), Node('e')),
     Node('c',
         Node('f'), Node('g')))
@@ -75,12 +102,13 @@ tree = Node('a',
             Node('d',
                 Node('e')))))
 
+# max_depth = 3
+tree = Node('a', 
+    Node('b',
+        Node('d')),
+    Node('c',
+        Node('e')))
 
-deepest_nodes, max_depth = deepest(tree)
+test(tree)
 
-print("Max depth = {}".format(max_depth))
-print("\nDeepest nodes = ")
-
-for node in deepest_nodes:
-    print(node.val)
 
