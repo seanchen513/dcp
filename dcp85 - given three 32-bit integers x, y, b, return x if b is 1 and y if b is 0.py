@@ -18,16 +18,17 @@ def branch(x, y, b):
 
 x = 513
 y = 1037
-b = 0
 
 print("x = {}".format(x))
 print("y = {}".format(y))
 
-result = branch(x, y, b=0)
-print("if b is 0, we get {}".format(result))
+b = 0
+result = branch(x, y, b)
+print("if b is {}, we get {}".format(b, result))
 
-result = branch(x, y, b=1)
-print("if b is 1, we get {}".format(result))
+b = 1
+result = branch(x, y, b)
+print("if b is {}, we get {}".format(b, result))
 
 
 
