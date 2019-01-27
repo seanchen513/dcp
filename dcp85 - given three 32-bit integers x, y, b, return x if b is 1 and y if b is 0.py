@@ -10,7 +10,7 @@ Given three 32-bit integers x, y, and b, return x if b is 1 and y if b is 0, usi
 
 # Solution #1: mathematical way
 def branch(x, y, b):
-    return b * y + (1 - b) * x
+    return b * x + (1 - b) * y
 
 # Solution #2: bits way
 # ???
