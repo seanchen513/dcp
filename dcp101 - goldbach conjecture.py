@@ -22,23 +22,27 @@ If a < c OR a==c AND b < d.
 
 import math
 
-# assume n is integer >= 2
+
+# Every prime > 3 has form 6k-1 or 6k+1
 def is_prime(n):
-    if n == 2:
+    if n < 2:
+        return None
+
+    if n == 2 or n == 3:
         return True
 
-    if n % 2 == 0:
+    if (n % 2 == 0) or (n % 3 == 0):
         return False
 
-    last = int(math.sqrt(n)) + 1
+    d = 5
+    n_sqrt = int(math.sqrt(n)) + 1
 
-    # k: 3, 5, 7, 9 (not prime), 11, 13, 15 (not prime), 
-    # 17, 19, 21 (not prime), 23, 25 (not prime), 27 (not prime),
-    # 29, 31, 33 (not prime), 35 (not prime), 37, 39 (not prime),
-    # 41, 43, 45 (not prime), 47, 49 (not prime), ...
-    for k in range(3, last, 2): 
-        if n % k == 0:
+    while d <= n_sqrt:
+        # might do an extraneous comparison for d+2 > n_sqrt
+        if (n % d == 0) or (n % (d+2) == 0):
             return False
+            
+        d += 6        
 
     return True
 
@@ -48,7 +52,7 @@ def goldbach(n):
     last = int(n/2) + 1
 
     for k in range(2, last):
-        if not is_prime(2):
+        if not is_prime(k):
             continue
         
         if not is_prime(n - k):
@@ -75,11 +79,20 @@ n = 14 # 3 + 11
 n = 16 # 3 + 13
 n = 18 # 5 + 13
 n = 20 # 3 + 17
+n = 22 # 3 + 19
 
+"""
 g = goldbach(n)
 
 print("n = {}".format(n))
 print("goldbach = {} + {}".format(g, n - g))
+"""
+
+for n in range(4, 101, 2):
+    g = goldbach(n)
+    print("{} = {} + {}".format(n, g, n-g))
+
+
 
 
 
