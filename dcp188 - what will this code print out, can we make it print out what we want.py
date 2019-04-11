@@ -38,6 +38,7 @@ def make_functions():
     return flist
 
 
+# Solution #1: Return lambda in print_i()
 # prints out:
 # 1
 # 2
@@ -57,14 +58,49 @@ def make_functions_fixed():
     return flist
 
 
+# Solution #2: Use lambda directly
+def make_functions_fixed2():
+    flist = []
+    
+    for i in [1, 2, 3]:
+        flist.append(lambda i=i: print(i))
+
+    return flist
+
+
+# Solution #3: Use function generator
+def make_functions_fixed3():
+    flist = []
+    
+    def print_i_generator(j):
+        def print_i():
+            print(j)
+
+        return print_i
+
+    for i in [1, 2, 3]:
+        flist.append(print_i_generator(i))
+
+    return flist
+
+
 print("\nOriginal:")
 functions = make_functions()
 for f in functions:
     f()
 
-print("\nFixed:")
+print("\nSoltuion #1 (return lambda in print_i()):")
 functions = make_functions_fixed()
+for f in functions:
+    f()
 
+print("\nSoltuion #2 (use lambda directly):")
+functions = make_functions_fixed2()
+for f in functions:
+    f()
+
+print("\nSoltuion #3 (use function generator):")
+functions = make_functions_fixed2()
 for f in functions:
     f()
 
