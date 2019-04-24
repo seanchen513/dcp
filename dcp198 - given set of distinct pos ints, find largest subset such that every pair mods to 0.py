@@ -28,8 +28,8 @@ def find_max_subset(s):
 
     print("\nChains: {}".format(chains))
 
-    #_, max_list = max(chains.items(), key=lambda v: len(v)) # doesn't give correct answers
-    max_list = max(chains.values(), key=lambda v: len(v))
+    _, max_list = max(chains.items(), key=lambda kv: len(kv[1]))
+    #max_list = max(chains.values(), key=lambda v: len(v)) # also works
 
     return max_list
 
