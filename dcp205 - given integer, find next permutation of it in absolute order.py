@@ -15,8 +15,15 @@ case 2: if all digits sorted asc, then swap last 2 digits
 other cases:
 1. Traversing from right side, find digit d that is smaller than previous digit
 2. Of traversed digits, find smallest digit > d.
+    - Can use binary search here.
 3. Swap these two digits.
 4. Sort all digits to right of d (current position).
+    - Actually, we know that all these digits are sorted in descending order 
+      except for possibly the digit that was swapped in.
+    - So this step could be done in O(n) time.
+
+O(n) time
+O(n) space since we convert integer to list of digit strings
 """
 
 # Given "num" is integer.
@@ -47,7 +54,10 @@ def next_perm(num):
     # swap these two digits
     a[pos1], a[min_index] = a[min_index], a[pos1]
 
-    # sort all digits to right of pos1
+    # Sort all digits to right of pos1.
+    # Actually, we know that all these digits are sorted in descending order 
+    # except for possibly the digit that was swapped in.
+    # So this step could be done in O(n) time.
     a[pos1 + 1:] = sorted(a[pos1 + 1:])
 
     # map(str, a) = list of digits, where each digit is a string
@@ -58,6 +68,7 @@ def next_perm(num):
 
 ################################################################################
 
+n = 5 # trivial case; answer = None
 n = 12345 # one of the simple cases; answer = 12354 
 n = 54321 # one of the simple cases; answer = None
 n = 48975 # 49578
