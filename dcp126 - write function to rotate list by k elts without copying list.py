@@ -11,11 +11,12 @@ Write a function that rotates a list by k elements. For example, [1, 2, 3, 4, 5,
 # O(n) time
 # O(k) aux space
 def rotate(a, k):
+    # rotate by k elements, so temp will have k elements
     temp = []
     for i in range(0, k):
         temp.append(a[i])
 
-    # shift rest of array over
+    # shift rest of array over by k positions
     for i in range(k, len(a)):
         a[i-k] = a[i]
 
@@ -70,8 +71,9 @@ set 2: 2 6 4
 
 import math
 
-# Solution #3: partition array into gcd(n,k) sets,
-# where elements within each set are shifted by "one" position.
+# Solution #3: partition array into gcd(n,k) cycles,
+# where elements within each cycle are shifted by "one" position within the cycle.
+# The length of each cycle is n/gcd(n,k).
 # O(n) time
 # O(1) space
 def rotate3(a, k):
@@ -87,8 +89,9 @@ def rotate3(a, k):
         temp = a[i]
         index = i
         for j in range (0, set_size - 1):
-            a[index] = a[(index + k) % n] 
-            index = (index + k) % n
+            next_index = (index + k) % n
+            a[index] = a[next_index] 
+            index = next_index
 
         a[index] = temp
 
