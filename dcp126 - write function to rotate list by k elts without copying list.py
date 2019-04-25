@@ -87,13 +87,12 @@ def rotate3(a, k):
 
     for i in range(0, gcd): # first element of each set
         temp = a[i]
-        index = i
-        for j in range (0, set_size - 1):
-            next_index = (index + k) % n
-            a[index] = a[next_index] 
-            index = next_index
+        for _ in range (0, set_size - 1):
+            next = (i + k) % n
+            a[i] = a[next] 
+            i = next            
 
-        a[index] = temp
+        a[i] = temp
 
 ################################################################################
 
