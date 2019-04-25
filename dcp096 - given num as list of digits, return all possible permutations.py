@@ -13,34 +13,33 @@ import pprint
 # Build recursion tree.
 # Each new child node is based on new array with kth element 
 # swapped with one of the elements to its right.
-def all_perms(a, n, k, p):
-    # only add permutation to list p at bottom level of recursion tree
-    if k == n - 1:
-        p.append(a)
+def all_perms(arr, k, perms):
+    # only add permutation to list "perms" at bottom level of recursion tree
+    if k == len(arr) - 1:
+        perms.append(arr)
         return
 
-    for i in range(k, n):        
-        b = a[:]
+    for i in range(k, len(arr)):        
+        b = arr[:]
         b[i], b[k] = b[k], b[i] # swap
 
-        all_perms(b, n, k+1, p)
+        all_perms(b, k+1, perms)
 
 
 a = [1, 2, 3]
 a = [1, 2, 3, 4]
 
-n = len(a)
 print("a = {}".format(a))
 
-p = []
-all_perms(a, n, 0, p)
+perms = []
+all_perms(a, 0, perms)
 print("\nall permutations:")
-pprint.pprint(p)
+pprint.pprint(perms)
 
 print("\nall permutations, sorted:")
-p.sort()
-pprint.pprint(p)
+perms.sort()
+pprint.pprint(perms)
 
-num_p = len(p)
-print("\nCheck number of elemeents in p: {}".format(num_p))
+num_perms = len(perms)
+print("\nCheck number of elemeents in p: {}".format(num_perms))
 

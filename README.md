@@ -13,6 +13,11 @@ Bit manipulation:
 Dynamic Programming:
 - 75 - longest inc subsequence
 
+Ordering and Permutations:
+- 95 - given num rep by list of digits, find next greater permutation of number in lexicographic ordering
+- 96 - given num as list of digits, return all possible permutations
+- 205 - given integer, find next permutation of it in absolute order
+
 Math:
 - 70 - given pos integer n, return nth perfect number (digits sum to 10)
 - 74 - num times x appears in n-by-n mult table
@@ -20,6 +25,7 @@ Math:
 - 138 - find min number of coins to make n cents
 - 150 - given list of points, central point, and int k, find nearest k points from central point
 - 156 - given pos int n, find smallest number of squared ints which sum to n
+- 198 - given set of distinct pos ints, find largest subset such that every pair (i,j) of elements in subset satifies i%j=0 or j%i=0
 
 Math - Number theory:
 - 101 - given even number greater than 2, return 2 primes that sum to given number (Goldbach's conjecture)
