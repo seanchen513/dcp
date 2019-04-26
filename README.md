@@ -26,6 +26,7 @@ Math:
 - 150 - given list of points, central point, and int k, find nearest k points from central point
 - 156 - given pos int n, find smallest number of squared ints which sum to n
 - 198 - given set of distinct pos ints, find largest subset such that every pair (i,j) of elements in subset satifies i%j=0 or j%i=0
+- 202 - check whether an integer is a palindrome without converting to string
 
 Math - Number theory:
 - 101 - given even number greater than 2, return 2 primes that sum to given number (Goldbach's conjecture)
@@ -64,6 +65,9 @@ Intervals:
 - 77 - return list of intervals where all overlapping intervals have been merged
 - 119 - given set of closed intervals, find smallest set of numbers that covers all intervals
 - 191 - find min num intervals to remove to make rest of intervals non-overlapping
+
+Arrays, other:
+- 189 - given array, return length of longest subarray where all its elements are distinct
 
 Rotated arrays/lists:
 - 58 - find element in rotated sorted array
