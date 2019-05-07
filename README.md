@@ -77,6 +77,9 @@ Rotated arrays/lists:
 - 197 - given array and num k smaller than length of array, rotate array to right k elements in-place
 - 203 - given array sorted and rotated with no duplicates, find min element in O(log N) time
 
+Binary tree:
+- 112 - given bin tree, find lowest common ancestor of two given nodes, where each node has a parent pointer
+
 Chess, backtracking:
 - 38 - N queens problem
 - 64 - write function to return number of knight's tours on N-by-N chessboard
