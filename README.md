@@ -78,7 +78,28 @@ Rotated arrays/lists:
 - 203 - given array sorted and rotated with no duplicates, find min element in O(log N) time
 
 Binary tree:
+- 3 - serialize deserialize binary tree
+- 24 - implement locking in binary tree
+- 48 - reconstruct binary tree from pre-order and in-order traversals
+- 50 - evaluate arithmetic expression given by binary tree
+- 80 - given root of binary tree, return deepest node
+- 83 - invert a binary tree (sideways)
+- 107 - print the nodes in a binary tree level-wise
 - 112 - given bin tree, find lowest common ancestor of two given nodes, where each node has a parent pointer
+- 115 - given 2 non-empty BTs s and t, check whether t has exactly same structure and node values with subtree of s
+- 116 - generate a finite but arb large binary tree quickly in O(1)
+- 117 - given binary tree, return level of tree with min sum
+- 135 - given binary tree, find min path sum from root to leaf
+- 196 - given root of binary tree, find most frequent subtree sum
+- 215 - given the root to a binary tree, return its bottom view
+
+Binary search tree:
+- 36 - given root of BST, find second largest node
+- 93 - given tree, find largest subtree that is a BST
+- 125 - given root of BST and target k, return 2 nodes in tree whose sum is k
+- 133 - given node in BST, return next bigger element (inorder successor)
+- 165 - given array of ints, return new array where each elt is number of smaller ints to right of that elt in original array
+- 179 - given sequence of keys visited by postorder traversal of BST, reconstruct tree
 
 Chess, backtracking:
 - 38 - N queens problem
