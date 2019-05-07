@@ -63,9 +63,9 @@ Matrices
 Intervals:
 - 21 - given array of time intervals for classes, find min rooms required
 - 77 - return list of intervals where all overlapping intervals have been merged
-- 119 - given set of closed intervals, find smallest set of numbers that covers all intervals
+- 119 - given set of closed intervals, find smallest set of numbers that covers all intervals (same as dcp200)
 - 191 - find min num intervals to remove to make rest of intervals non-overlapping
-- 200 - given set of intervals, compute smallest set of points that cover it
+- 200 - given set of intervals, compute smallest set of points that cover it (same as dcp119)
 
 Arrays, other:
 - 189 - given array, return length of longest subarray where all its elements are distinct
