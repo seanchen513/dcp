@@ -91,12 +91,12 @@ def tree_to_list(root, lst):
 ################################################################################
 # Solution #3: convert BST to sorted doubly-linked list in-place
 # O(n) time
-# O(log n) space, but modfifies BST
+# O(log n) space, but modifies BST
 
 
 
 ################################################################################
-# Solution #4: traver in in-order and reverse in-order at same time.  Use stacks.
+# Solution #4: traverse in in-order and reverse in-order at same time.  uses stacks.
 # O(n) time
 # O(log n) space -- DOES NOT modify BST
 
