@@ -107,8 +107,48 @@ def find_last_smaller(seq, left, right, val):
 
 ################################################################################
 # Solution #3: iterative solution using stack.
+# Use Python list with append() and pop() as a stack.
+# O(n log n) time
+# O(n) space due to stack.
+def reconstruct_bst3(seq):
+    if (seq is None) or (seq == []):
+        return None
 
+    root = Node(seq[-1])
+    stack = [root]
+    index = len(seq) - 2
 
+    while index >= 0:
+        node = Node(seq[index])
+
+        # Keep popping nodes while top of stack is greater.
+        temp = None
+        while (len(stack) > 0) and (stack[-1].val > seq[index]):
+            temp = stack.pop()
+
+        if temp is not None:
+            temp.left = node
+        else:
+            stack[-1].right = node
+
+        stack.append(node)
+        index -= 1
+
+    return root
+
+"""
+[2, 4, 3, 8, 7, 5]
+ 0  1  2  3  4  5 = index
+
+stack       index       seq[index]      popped:
+========================================================================
+5           4           7               nothing             5.right = 7
+5 7         3           8               nothing             7.right = 8
+5 7 8       2           3               8 7 5               5.left = 3
+3           1           4               nothing             3.right = 4
+3 4         0           2               4 3                 3.left = 2
+
+"""
 
 ################################################################################
 # Solution #4: Read postorder traversal string in reverse...
@@ -181,8 +221,9 @@ seq = [3, 2, 1]
 def test_seq(seq):
     print("sequence: {}\n".format(seq))
 
-    tree = reconstruct_bst(seq)
+    #tree = reconstruct_bst(seq)
     #tree = reconstruct_bst2(seq, 0, len(seq) - 1)
+    tree = reconstruct_bst3(seq)
     #tree = reconstruct_bst4(seq)
 
     print_tree(tree)
