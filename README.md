@@ -9,6 +9,7 @@ Solutions by me with some help (when needed) from various web sources.
 
 Bit manipulation:
 - 40 - print non-duplicated integer in array
+- 221 - return nth sevenish number
 
 Dynamic Programming:
 - 75 - longest inc subsequence
