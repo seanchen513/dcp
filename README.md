@@ -74,6 +74,7 @@ Intervals:
 
 Arrays, other:
 - 189 - given array, return length of longest subarray where all its elements are distinct
+- 224 - given sorted array, find smallest positive int that is not the sum of a subset of the array, in O(n) time
 
 Rotated arrays/lists:
 - 58 - find element in rotated sorted array
