@@ -18,6 +18,10 @@ Ordering and Permutations:
 - 95 - given num rep by list of digits, find next greater permutation of number in lexicographic ordering
 - 96 - given num as list of digits, return all possible permutations
 - 205 - given integer, find next permutation of it in absolute order
+- 228 - given list of numbers, arrange them in order to form largest possible integer
+
+Sorting
+- 228 - given list of numbers, arrange them in order to form largest possible integer
 
 Math:
 - 70 - given pos integer n, return nth perfect number (digits sum to 10)
