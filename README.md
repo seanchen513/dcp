@@ -125,4 +125,5 @@ Other:
 - 39 - implement Conway's Game of Life
 - 54 - implement efficient Sudoku solver
 - 55 - implement URL shortener
+- 225 - given n and k, write algorithm to determine where a prisoner should stand in order to be the last survivor
 
