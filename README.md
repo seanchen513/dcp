@@ -33,6 +33,7 @@ Math:
 - 198 - given set of distinct pos ints, find largest subset such that every pair (i,j) of elements in subset satifies i%j=0 or j%i=0
 - 202 - check whether an integer is a palindrome without converting to string
 - 233 - implement fib(n), which returns the nth number in the Fibonacci sequence, using only O(1) space
+- 252 - create algo to turn a proper fraction into an Egyption fraction
 
 Math - Number theory:
 - 101 - given even number greater than 2, return 2 primes that sum to given number (Goldbach's conjecture)
