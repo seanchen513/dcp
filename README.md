@@ -32,6 +32,7 @@ Math:
 - 156 - given pos int n, find smallest number of squared ints which sum to n
 - 198 - given set of distinct pos ints, find largest subset such that every pair (i,j) of elements in subset satifies i%j=0 or j%i=0
 - 202 - check whether an integer is a palindrome without converting to string
+- 233 - implement fib(n), which returns the nth number in the Fibonacci sequence, using only O(1) space
 
 Math - Number theory:
 - 101 - given even number greater than 2, return 2 primes that sum to given number (Goldbach's conjecture)
