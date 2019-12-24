@@ -27,24 +27,25 @@ Note:
 
 """
 
-# Brute-force solution O(n^3):
+# Brute-force solution O(n^2):
 # Look at sums of all possible contiguous subarrays.
 # Extra: keep track of indices for max subarray.
 def max_subarray_sum(arr):
     n = len(arr)
-    s = 0
     max_sum = 0
 
     # extra vars to keep track of indices for max subarray
-    start = n # so Python prints empty list [] if subarray is empty
+    start = n # so Python prints empty list [] for subarray[start:end+1] if subarray is empty
     end = 0
 
     for i in range(n):
-        for j in range(n):
-            s = sum(arr[i:j+1])
-            
-            if s > max_sum:
-                max_sum = s
+        curr_sum = 0
+
+        for j in range(i, n):
+            curr_sum += arr[j]
+
+            if curr_sum > max_sum:
+                max_sum = curr_sum
                 start = i
                 end = j
 
@@ -82,10 +83,10 @@ arr = [34, -50, 42, 14, -5, 86]
 #arr = [-5, -1, -8, -9]
 
 # other test cases
-#arr = []
-#arr = [5]
-#arr = [-1]
-#arr = [0]
+# arr = []
+# arr = [5]
+# arr = [-1]
+# arr = [0]
 
 print("\narray = {}".format(arr))
 
