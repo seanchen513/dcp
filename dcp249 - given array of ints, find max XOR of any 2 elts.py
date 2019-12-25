@@ -54,8 +54,12 @@ def max_xor2(arr):
         test_answer = answer ^ 1 # same as answer + 1
         # print("test_answer = answer ^ 1 = {}".format(test_answer))
 
-        """ The any() expression is checking if there are any two p's in prefixes
-        that xor to answer^1.  If yes, then we can set the 0th bit of
+        """ 
+        Fact: x ^ y = z remains true for any permutation of x, y, z.
+        Thus, p2 ^ p = test_answer <=> test_answer ^ p = p2
+        
+        The any() expression is checking if there are any two p's in prefixes
+        that xor to test_answer.  If yes, then we can set the 0th bit of
         new answer to 1.
         O(1) to test inclusion in set, and O(n) to loop over prefixes.
         Overall O(n).
