@@ -1,15 +1,17 @@
 """
 dcp#249
+LC#421
 
 This problem was asked by Salesforce.
 
 Given an array of integers, find the maximum XOR of any two elements.
 
+LeetCode: Can you do it in O(n) time?
 """
 
 from timeit import default_timer as timer
 
-# Solution #: brute force
+# Solution #1: brute force
 # O(n^2) time
 def max_xor(arr):
     n = len(arr)
