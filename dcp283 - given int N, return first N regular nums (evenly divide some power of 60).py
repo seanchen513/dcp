@@ -24,6 +24,8 @@ NOT:
 """
 
 from timeit import default_timer as timer
+import heapq
+
 
 def is_regular(n):
     while n % 2 == 0:
@@ -37,9 +39,11 @@ def is_regular(n):
 
     return n == 1
 
-
-# Solution #1
-# Something like O(n log n) due to checking divisibility by 2, 3, and 5
+"""
+Solution #1
+Something like O(n log n) due to checking divisibility by 2, 3, and 5
+O(n) space due to keeping list of regular numbers, but this isn't essential.
+"""
 def first_n_regular(n):
     regulars = []
     num_reg = 0
@@ -54,10 +58,13 @@ def first_n_regular(n):
 
     return regulars
 
-
-# Solution#2: use DP: memoization
-# Faster than solution #1.
-# O(n log n) due to sorting at end
+"""
+Solution#2: use DP: memoization
+Faster than solution #1.
+O(n log n) due to sorting at end.
+O(n) space due to needing to keep track of regular numbers to 
+check if i // 2, etc., are in regulars.
+"""
 def first_n_regular_memo(n):
     regulars = {1} # set
     num_reg = 1
@@ -84,7 +91,7 @@ but multiplied by 2, 3, or 5.  For each of these factors (2, 3, 5), keep track
 of the last regular number that it multiplied.
 
 O(n) time
-O(1) space (not counting the list of regular numbers being built)
+O(n) space
 
 https://cs.stackexchange.com/questions/39689/how-can-i-generate-first-n-elements-of-the-sequence-3i-5j-7k
 
@@ -115,7 +122,36 @@ def first_n_regular_tabulation(n):
 
     return regulars
 
+"""
+Solution #4: using priority queue (heap).
+Better to use a heap that is also a set.
 
+O(n log n) since insert/remove from heap are O(log n).
+[set operations are O(1) amortized avg case, but O(n) actual worst case...]
+O(n) space
+"""
+def first_n_regular_heap(n):
+    num_reg = 0
+    regulars = []
+    
+    h = [1] # heap
+    pushed_so_far = {1} # set to parallel heap h
+
+    while num_reg < n:
+        x = heapq.heappop(h) # O(log (heap size)) <= O(log n)
+        regulars.append(x)
+        num_reg += 1
+
+        for k in [2, 3, 5]:
+            y = x * k
+            if y not in pushed_so_far: # O(1) in practice
+                heapq.heappush(h, y) # O(log (heap size)) <= O(log n)
+                pushed_so_far.add(y) # O(1) amortized avg case...
+
+    return regulars
+
+
+###############################################################################
 
 # for i in range(1, 101):
 #     if is_regular(i):
@@ -144,3 +180,9 @@ print("\nSolution #3 (tabulation):\n{}".format(regulars3))
 print("time: {}".format(end - start))
 print("\nAre this solution the same as first one? {}".format(regulars == regulars3))
 
+start = timer()
+regulars4 = first_n_regular_heap(n)
+end = timer()
+print("\nSolution #4 (heap):\n{}".format(regulars4))
+print("time: {}".format(end - start))
+print("\nAre this solution the same as first one? {}".format(regulars == regulars4))
