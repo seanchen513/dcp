@@ -27,9 +27,12 @@ And there are 4 12's in the table.
 '''
 
 
-# number of times that integer x appears as value in n-by-n multiplication table
-# O(n^2)
-def f(n, x):
+"""
+Solution #1: count cell-by-cell
+number of times that integer x appears as value in n-by-n multiplication table
+O(n^2)
+"""
+def count(n, x):
     count = 0
 
     for i in range(1, n+1):
@@ -40,12 +43,15 @@ def f(n, x):
     return count
 
 
-# mathematical solution: number of divisors of x in range 1..n
-# O(n)
-# note: other ways to tell if d is integer:
-# - if d % 1 == 0
-# - if d == int(d)
-def f2(n, x):
+"""
+Solution #2: mathematical
+Count number of divisors of x in range 1..n
+O(n)
+Note: other ways to tell if d is integer:
+- if d % 1 == 0
+- if d == int(d)
+"""
+def count2(n, x):
     count = 0
 
     for i in range(1, n+1):
@@ -58,12 +64,20 @@ def f2(n, x):
 ################################################################################
 
 x = 12
-print ("x = ", x)
-print("n   f1   f2")
-for n in range(1, x+1):
-    print("{:3d} {:3d} {:3d}".format(n, f(n, x), f2(n, x)))
-    
-#print(f(n=6, x=12)) # 4
-#print(f2(n=6, x=12)) # 4
+max_n = 24
 
+print ("\nx = ", x)
+
+print("\nNumber of times x appears in n-by-n multiplication tables.")
+print("Assume 1-based multiplication tables.")
+print("\nf1: count cell by cell")
+print("f2: count divisors")
+
+print("\n{:>5}{:>5}{:>5}".format('n', 'f1', 'f2'))
+
+for n in range(1, max_n + 1):
+    print("{:5}{:5}{:5}".format(n, count(n, x), count2(n, x)))
+    
+#print(count(n=6, x=12)) # 4
+#print(count2(n=6, x=12)) # 4
 
