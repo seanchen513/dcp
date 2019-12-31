@@ -39,6 +39,7 @@ def is_regular(n):
 
 
 # Solution #1
+# Something like O(n log n) due to checking divisibility by 2, 3, and 5
 def first_n_regular(n):
     regulars = []
     num_reg = 0
@@ -54,8 +55,9 @@ def first_n_regular(n):
     return regulars
 
 
-# Solution#2: use memoization
-# Only seems to be twice as fast as solution#1.
+# Solution#2: use DP: memoization
+# Faster than solution #1.
+# O(n log n) due to sorting at end
 def first_n_regular_memo(n):
     regulars = {1} # set
     num_reg = 1
@@ -71,14 +73,55 @@ def first_n_regular_memo(n):
 
         i += 1
 
+    return sorted(regulars)
+
+
+"""
+Solution #3: use DP: tabulation
+But it's difficult to order the numbers.
+Use fact that every new regular number comes from a previous regular number,
+but multiplied by 2, 3, or 5.  For each of these factors (2, 3, 5), keep track
+of the last regular number that it multiplied.
+
+O(n) time
+O(1) space (not counting the list of regular numbers being built)
+
+https://cs.stackexchange.com/questions/39689/how-can-i-generate-first-n-elements-of-the-sequence-3i-5j-7k
+
+"""
+def first_n_regular_tabulation(n):
+    num_reg = 1
+    regulars = [1]
+
+    x = y = z = 1 # last regular numbers that 2, 3, or 5 multiplied, respectively
+    i = j = k = 0 # indices corresponding to x, y, z
+    
+    while num_reg < n:
+        m = min(2*x, 3*y, 5*z)
+        regulars.append(m)
+    
+        # Note: the 3 possibilities below are not exclusive.
+        if m == x*2: 
+            i += 1
+            x = regulars[i]
+        if m == y*3: 
+            j += 1
+            y = regulars[j]
+        if m == z*5: 
+            k += 1  
+            z = regulars[k]
+
+        num_reg += 1
+
     return regulars
+
 
 
 # for i in range(1, 101):
 #     if is_regular(i):
 #         print(i)
 
-n = 500
+n = 200
 print("n = {}".format(n))
 
 start = timer()
@@ -90,8 +133,14 @@ print("time: {}".format(end - start))
 start = timer()
 regulars2 = first_n_regular_memo(n)
 end = timer()
-print("\nSolution #2 (memoization):\n{}".format(regulars))
+print("\nSolution #2 (memoization):\n{}".format(regulars2))
 print("time: {}".format(end - start))
+print("\nAre this solution the same as first one? {}".format(regulars == sorted(regulars2)))
 
-print("\nAre the 2 solutions the same? {}".format(regulars == sorted(regulars2)))
+start = timer()
+regulars3 = first_n_regular_tabulation(n)
+end = timer()
+print("\nSolution #3 (tabulation):\n{}".format(regulars3))
+print("time: {}".format(end - start))
+print("\nAre this solution the same as first one? {}".format(regulars == regulars3))
 
