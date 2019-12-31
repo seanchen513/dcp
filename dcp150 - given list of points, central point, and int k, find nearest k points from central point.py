@@ -13,10 +13,13 @@ For example, given the list of points [(0, 0), (5, 4), (3, 1)], the central poin
 # Can use queue, or put distances in list and sort.
 
 def find_nearest_points(points, central_point, k):
-    ds = {}
+    # Don't need a dict here; a list also works.
+    ds = {} # dictionary of points and their distances to central point
+    x = central_point[0]
+    y = central_point[0]
 
     for pt in points:
-       ds[pt] = (pt[0] - central_point[0])**2 + (pt[1] - central_point[1])**2
+       ds[pt] = (pt[0] - x)**2 + (pt[1] - y)**2
 
     lst = sorted(ds.items(), key=lambda kv: kv[1]) # sort by values in dict ds
 
@@ -30,7 +33,12 @@ k = 2
 
 nearest_points = find_nearest_points(points, central_point, k)
 
-print("central point = {}".format(central_point))
+print("\npoints:")
+print(points)
+
+print("\ncentral point = {}".format(central_point))
 print("k = {}".format(k))
-print("\nnearest k points =")
+
+print("\nnearest k points:")
 print(nearest_points)
+
