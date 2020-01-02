@@ -1,9 +1,12 @@
 """
-Given stock price array and int k, find max profit from unlimited buys and sells.
+Given stock price array and int k, find max profit from k buys and sells.
+*** Must sell all stock before buying again.
 
 Related problems:
 
 dcp47 - given stock price array, find max profit from buying then selling
+dcp193 - given stock price array, find max profit after fees from unlimited buys and sells
+    (*** don't have to sell before buying again)
 dcp408 - given stock price array and int k, find max profit from k buys and sells
 
 """
@@ -48,11 +51,16 @@ def max_profit(prices):
     return profit
 
 
+###############################################################################
+
 prices = [5, 2, 4, 0, 1]
+prices = [1, 3, 2, 8, 4, 10]
+
+print("\nstock prices = {}".format(prices))
+print("#"*80)
 
 m = max_profit(prices)
 
-print("\nstock prices = {}".format(prices))
-print("\nnumber of buys and sells = {}".format(k))
+print("#"*80)
 print("\nmax profit = {}".format(m))
 
