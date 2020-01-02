@@ -47,6 +47,7 @@ Solutions by me with some help (when needed) from various web sources.
 ### Dynamic Programming
 - 75 - longest increasing subsequence
 - 283 - given int N, return first N regular numbers (evenly divide some power of 60)
+- 408 - given stock price array and int k, find max profit from k buys and sells
 
 ### Ordering and Permutations
 - 95 - given num rep by list of digits, find next greater permutation of number in lexicographic ordering
@@ -60,7 +61,6 @@ Solutions by me with some help (when needed) from various web sources.
 - 95 - given num rep by list of digits, find next greater permutation of number in lexicographic ordering
 - 205 - given integer, find next permutation of it in absolute order
 - 347 - given str of len N and k (can move one of first k letters to end), find lexico smallest string after unlimited num moves
-
 
 ### Searching
 - 374 - given sorted arr of distinct ints, return lowest fixed point
@@ -138,6 +138,7 @@ Solutions by me with some help (when needed) from various web sources.
 - 122 - given matrix of ints, find max sum path from upper left to lower right corner
 - 158 - given matrix of 0s and 1s (wall), find num ways to move from upper left to lower right corner
 
+
 ## Strings, anagrams, palindromes, balanced strings
 
 ### Strings
@@ -168,7 +169,14 @@ Solutions by me with some help (when needed) from various web sources.
 - 199 - given string of parentheses, find a balanced string that can be produced from it using min num insertions and deletions
 
 
-## Intervals, Arrays, ...
+## Arrays, Intervals, ...
+
+### Arrays - general and not classified yet
+- 47 - given stock price array, find max profit from buying then selling
+- 49 - find max sum of any contiguous subarray in O(n) time
+- 189 - given array, return length of longest subarray where all its elements are distinct
+- 224 - given sorted array, find smallest positive int that is not the sum of a subset of the array, in O(n) time
+- 408 - given stock price array and int k, find max profit from k buys and sells
 
 ### Intervals
 - 21, 404 - given array of time intervals for classes, find min rooms required
@@ -177,10 +185,6 @@ Solutions by me with some help (when needed) from various web sources.
 - 191 - find min num intervals to remove to make rest of intervals non-overlapping
 - 200 - given set of intervals, compute smallest set of points that cover it (same as dcp119)
 - 397 - given list of jobs with start and end times, find largest subset of compatible jobs
-
-### Arrays, other
-- 189 - given array, return length of longest subarray where all its elements are distinct
-- 224 - given sorted array, find smallest positive int that is not the sum of a subset of the array, in O(n) time
 
 ### Rotated arrays/lists
 - 58 - find element in rotated sorted array
@@ -238,30 +242,34 @@ Solutions by me with some help (when needed) from various web sources.
 - 3 - serialize deserialize BT
 - 8 - given BT, count unival subtrees
 - 24 - implement locking in BT
-- 48 - reconstruct BT from pre-order and in-order traversals
 - 50 - evaluate arithmetic expression given by BT
 - 80 - given BT, return deepest node
 - 83 - invert a BT (sideways)
-- 94 - given BT of ints, find max path sum between 2 nodes
-- 107 - print nodes in a BT level-wise
-- 110 - given BT, return all paths from root to leaves
 - 112 - given BT, find lowest common ancestor of two given nodes, where each node has a parent pointer
 - 115 - given 2 non-empty BTs s and t, check whether t has exactly same structure and node values with subtree of s
 - 116 - generate a finite but arb large BT quickly in O(1)
-- 117 - given BT, return level of tree with min sum
-- 135 - given BT, find min path sum from root to leaf
 - 146 - given BT where all nodes are 0 or 1, prune the tree so that all subtrees containing all 0s are removed
 - 196 - given BT, find most frequent subtree sum
 - 204 - given complete BT, count number of nodes faster than O(n)
 - 215 - given BT, return its bottom view
-- 223 - compute in-order traversal of a BT using O(1) space
 - 247 - given BT, determine whether or not it is height-balanced
 - 254 - given BT, convert it to a full one by removing nodes with only one child
-- 258 - given BT, print nodes in boustrophedon order
 - 284 - given BT and partic node, find all cousins
 - 326 - given seq, construct Cartesian tree (heap-ordered and in-order)
 - 327 - given two BTs, construct BT of sums
 - 357 - given BT in certain nested str rep, find depth of tree
+
+### Binary trees - Traversals
+- 48 - reconstruct BT from pre-order and in-order traversals
+- 107 - print nodes in a BT level-wise
+- 117 - given BT, return level of tree with min sum
+- 223 - compute in-order traversal of a BT using O(1) space
+- 258 - given BT, print nodes in boustrophedon order
+
+### Binary trees (BT) - Paths
+- 94 - given BT of ints, find max path sum between 2 nodes
+- 110 - given BT, return all paths from root to leaves
+- 135 - given BT, find min path sum from root to leaf
 - 394 - given BT and int k, return whether there is root-to-leaf path that sums to k
 
 ### Binary search trees (BST)
@@ -291,11 +299,11 @@ Solutions by me with some help (when needed) from various web sources.
 
 ## Graphs
 
+### Graphs - general or not classified yet
 - 56 - can given graph be colored using at most k colors
 - 72 - given graph represented by string and edge list, return largest value path
 - 182 - given an undirected graph, check if it is minimally connected
 - 207 - given undirected graph G, check whether it is bipartite
-- 208 - given LL of numbers and pivot k, partition LL so all nodes less than k come before nodes GT or equal to k
 - 218 - write algo to compute reversal of directed graph
 - 234 - given undirected graph with weighted edges, compute the maximum weight spanning tree
 - 255 - given a graph, find its transitive closure
@@ -365,7 +373,6 @@ Solutions by me with some help (when needed) from various web sources.
 - 219 - design and implement Connect 4
 - 225 - given n and k, write algorithm to determine where a prisoner should stand in order to be the last survivor
 - 227 - given game board and dict of valid words, implement Boggle solver
-- 258 - 
 - 289 - given starting [a,b,c] for game of Nim and optimal play, find if first player has a forced win
 
 ### Other
