@@ -8,6 +8,14 @@ Given a array of numbers representing the stock prices of a company in chronolog
 For example, given [9, 11, 8, 5, 7, 10], you should return 5, since you could buy the stock at 5 dollars and sell it at 10 dollars.
 """
 
+"""
+Note:
+Equivalent to max sum contiguous subsequence problem.
+Convert by taking profit/loss between consecutive days.
+https://stackoverflow.com/questions/7086464/maximum-single-sell-profit
+
+"""
+
 # Solution#1: naive
 # O(n^2)
 def max_profit(prices):
@@ -26,7 +34,7 @@ def max_profit(prices):
 # Solution#2:
 # Iterate through prices, keeping track of min so far
 # and current price minus min so far
-# O(n)
+# O(n) time, O(1) extra space
 def max_profit2(prices):
     min_so_far = prices[0]
     p = 0 # max profit so far
