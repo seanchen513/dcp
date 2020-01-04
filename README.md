@@ -45,9 +45,15 @@ Solutions by me with some help (when needed) from various web sources.
 - 173 - flatten a nested dictionary and namespace keys with periods
 
 ### Dynamic Programming
+- 49 - find max sum of any contiguous subarray in O(n) time
 - 75 - longest increasing subsequence
 - 283 - given int N, return first N regular numbers (evenly divide some power of 60)
+
+### Dynamic Programming - maximum profit from buying and selling stock
+- 47 - given stock price array, find max profit from buying then selling
+- 193 - given stock price array, find max profit after fees from unlimited buys and sells
 - 408 - given stock price array and int k, find max profit from k buys and sells
+- 408b - given stock price array and int k, find max profit from unlimited buys and sells
 
 ### Ordering and Permutations
 - 95 - given num rep by list of digits, find next greater permutation of number in lexicographic ordering
@@ -73,46 +79,27 @@ Solutions by me with some help (when needed) from various web sources.
 - 386 - given str, sort it in dec order based on freq of chars
 
 
-## Math
+## Arrays, Intervals, ...
 
-### Math - general or not classified yet
-- 69 - largest product of 3 integers
-- 70 - given pos integer n, return nth perfect number (digits sum to 10)
-- 74 - num times x appears in n-by-n mult table
-- 129 - given real number n, find square root of n
-- 138 - find min number of coins to make n cents
-- 156 - given pos int n, find smallest number of squared ints which sum to n
-- 198 - given set of distinct pos ints, find largest subset such that every pair (i,j) of elements in subset satifies i%j=0 or j%i=0
-- 202 - check whether an integer is a palindrome without converting to string
-- 210 - test conjecture that every Collatz sequence eventually reaches one
-- 221 - return nth sevenish number [bits]
-- 233 - implement fib(n), which returns the nth number in the Fibonacci sequence, using only O(1) space
-- 252 - create algo to turn a proper fraction into an Egyption fraction
-- 283 - given int N, return first N regular nums (evenly divide some power of 60)
-- 288 - given n, find num steps to reach Kaprekar's constant from n
-- 350 - given N, find smallest num perfect squares that sum to N
-- 372 - write fn that takes natural num and returns num digits it has (no loops)
-- 380 - impl int division without using division operator in O(log n)
+### Arrays - general and not classified yet
+- 189 - given array, return length of longest subarray where all its elements are distinct
+- 192 - given array of nonneg ints, can advance at most num steps of current value; return whether you can get to end of array
+- 224 - given sorted array, find smallest positive int that is not the sum of a subset of the array, in O(n) time
 
-### Math - Distance
-- 150 - given list of points, central point, and int k, find nearest k points from central point
-- 340 - given set of pts in plane, find two closest pts
-- 376 - find closest coin in Manhattan distance
+### Intervals
+- 21, 404 - given array of time intervals for classes, find min rooms required
+- 77 - return list of intervals where all overlapping intervals have been merged
+- 119 - given set of closed intervals, find smallest set of numbers that covers all intervals (same as dcp200)
+- 191 - find min num intervals to remove to make rest of intervals non-overlapping
+- 200 - given set of intervals, compute smallest set of points that cover it (same as dcp119)
+- 397 - given list of jobs with start and end times, find largest subset of compatible jobs
 
-### Math - Number theory
-- 101 - given even number greater than 2, return 2 primes that sum to given number (Goldbach's conjecture)
-- 184 - given n numbers, find their gcd
-
-### Math - Probability and random numbers
-- 14 - estimate pi to 3 decimal places using Monte Carlo method
-- 15 - given stream of elts too large to store in memory, pick random elt from stream with uniform prob
-- 45 - implement rand7() from rand5()
-- 51 - shuffle card deck given rng 1 to k
-- 66 - given toss_biased() that returns 0 or 1, write function to simulate unbiased coin toss
-- 71 - implement rand5() given rand7()
-- 90 - given integer n and list of integers, randomly generate a number from 0 to n-1 that isn't in list (uniform)
-- 152 - given n numbers and n probabilities that sum to 1, write function to generate one of the number with its corresponding prob
-- 178 - simulate two probability games and calculate their expected values
+### Rotated arrays/lists
+- 58 - find element in rotated sorted array
+- 126 - write fn that rotates list by k elts; try without creating copy of list; how many swaps or moves?
+- 177 - given linked list and pos int k, rotate list to right by k places
+- 197 - given array and num k smaller than length of array, rotate array to right k elements in-place
+- 203 - given array sorted and rotated with no duplicates, find min element in O(log N) time
 
 
 ## Matrices, Mazes, ...
@@ -144,15 +131,15 @@ Solutions by me with some help (when needed) from various web sources.
 ### Strings
 - ....
 
-### String - anagrams
+### Strings - anagrams
 - 111 - given word w and string s, find all starting indices in s which are anagrams of w
 - 359 - given str formed by concat words rep integers and anagramming, return ints in sorted order
 - 395 - given arr of str, group anagrams together
 
-### String - palindromes
+### Strings - palindromes
 - 34 - given string, find palindrome that can be made by inserting fewest chars
 - 46 - find longest palindromic contiguous substring
-- 121 - given string which we can delete at most k chars from, return whether you can make a palindrome
+- 121 - given string, can we delete at most k chars to make a palindrome
 - 157 - given string, determine whether any permutation of it is a palindrome
 - 167 - given list of words, find all pairs of unique indices such that concatenation of two words is a palindrome
 - 181 - given string, split it into as few strings as possible such that each string is a palindrome
@@ -167,31 +154,6 @@ Solutions by me with some help (when needed) from various web sources.
 - 86 - given string of parentheses, return min num parentheses to be removed to make string valid
 - 142 - given string of parentheses and wildcard *, determine whether balanced
 - 199 - given string of parentheses, find a balanced string that can be produced from it using min num insertions and deletions
-
-
-## Arrays, Intervals, ...
-
-### Arrays - general and not classified yet
-- 47 - given stock price array, find max profit from buying then selling
-- 49 - find max sum of any contiguous subarray in O(n) time
-- 189 - given array, return length of longest subarray where all its elements are distinct
-- 224 - given sorted array, find smallest positive int that is not the sum of a subset of the array, in O(n) time
-- 408 - given stock price array and int k, find max profit from k buys and sells
-
-### Intervals
-- 21, 404 - given array of time intervals for classes, find min rooms required
-- 77 - return list of intervals where all overlapping intervals have been merged
-- 119 - given set of closed intervals, find smallest set of numbers that covers all intervals (same as dcp200)
-- 191 - find min num intervals to remove to make rest of intervals non-overlapping
-- 200 - given set of intervals, compute smallest set of points that cover it (same as dcp119)
-- 397 - given list of jobs with start and end times, find largest subset of compatible jobs
-
-### Rotated arrays/lists
-- 58 - find element in rotated sorted array
-- 126 - write fn that rotates list by k elts; try without creating copy of list; how many swaps or moves?
-- 177 - given linked list and pos int k, rotate list to right by k places
-- 197 - given array and num k smaller than length of array, rotate array to right k elements in-place
-- 203 - given array sorted and rotated with no duplicates, find min element in O(log N) time
 
 
 ## Linked lists, queues, Stacks, Heaps, Dictionaries
@@ -316,6 +278,47 @@ Solutions by me with some help (when needed) from various web sources.
 - 346 - given list of airline ticket prices for direct flights bw cities, find cheapest path from A to B with up to k connections
 - 407 - given undirected graph of pipes, find lowest cost config of pipes st each house has access to water
 
+
+## Math
+
+### Math - general or not classified yet
+- 69 - largest product of 3 integers
+- 70 - given pos integer n, return nth perfect number (digits sum to 10)
+- 74 - num times x appears in n-by-n mult table
+- 129 - given real number n, find square root of n
+- 138 - find min number of coins to make n cents
+- 156 - given pos int n, find smallest number of squared ints which sum to n
+- 198 - given set of distinct pos ints, find largest subset such that every pair (i,j) of elements in subset satifies i%j=0 or j%i=0
+- 202 - check whether an integer is a palindrome without converting to string
+- 210 - test conjecture that every Collatz sequence eventually reaches one
+- 221 - return nth sevenish number [bits]
+- 233 - implement fib(n), which returns the nth number in the Fibonacci sequence, using only O(1) space
+- 252 - create algo to turn a proper fraction into an Egyption fraction
+- 283 - given int N, return first N regular nums (evenly divide some power of 60)
+- 288 - given n, find num steps to reach Kaprekar's constant from n
+- 350 - given N, find smallest num perfect squares that sum to N
+- 372 - write fn that takes natural num and returns num digits it has (no loops)
+- 380 - impl int division without using division operator in O(log n)
+
+### Math - Distance
+- 150 - given list of points, central point, and int k, find nearest k points from central point
+- 340 - given set of pts in plane, find two closest pts
+- 376 - find closest coin in Manhattan distance
+
+### Math - Number theory
+- 101 - given even number greater than 2, return 2 primes that sum to given number (Goldbach's conjecture)
+- 184 - given n numbers, find their gcd
+
+### Math - Probability and random numbers
+- 14 - estimate pi to 3 decimal places using Monte Carlo method
+- 15 - given stream of elts too large to store in memory, pick random elt from stream with uniform prob
+- 45 - implement rand7() from rand5()
+- 51 - shuffle card deck given rng 1 to k
+- 66 - given toss_biased() that returns 0 or 1, write function to simulate unbiased coin toss
+- 71 - implement rand5() given rand7()
+- 90 - given integer n and list of integers, randomly generate a number from 0 to n-1 that isn't in list (uniform)
+- 152 - given n numbers and n probabilities that sum to 1, write function to generate one of the number with its corresponding prob
+- 178 - simulate two probability games and calculate their expected values
 
 ## ...
 
