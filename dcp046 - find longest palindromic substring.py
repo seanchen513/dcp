@@ -9,19 +9,20 @@ For example, the longest palindromic substring of "aabcdcb" is "bcdcb". The long
 """
 
 
-def longest_palindrome_length(s, max_so_far=0):
+def longest_palindrome_length(s):
+    start = 0
     end = len(s) - 1
-    if end <= 0:
-        return end + 1
 
-    if s[0] == s[end]:
-        return max(2 + longest_palindrome_length(s[1:end], max_so_far - 1), max_so_far)
+    while (start <= end)  and (s[start] == s[end]):
+        start += 1
+        end -= 1
 
-    max_so_far = 0
+    if start > end:
+        return len(s)
 
-    return max(longest_palindrome_length(s[1:], max_so_far - 1), \
-        longest_palindrome_length(s[:end], max_so_far - 1), \
-        max_so_far)
+    return max( 
+        longest_palindrome_length(s[1:]), \
+        longest_palindrome_length(s[:end]) )
 
 
 def is_palindrome(s):
@@ -37,7 +38,7 @@ def is_palindrome(s):
     
     return False
 
-# Solution:
+# Solution #1:
 # Find length of longest palindrome first, then check each substring of
 # that length within original string.
 def longest_palindrome(s):
@@ -52,6 +53,33 @@ def longest_palindrome(s):
             return substr
 
 
+# Solution #2:
+# Essentially the same solution, but combine the methods used
+# in the first solution.
+# Could modify this to return the starting index of the palindromic
+# substring...
+def longest_palindrome2(s):
+    start = 0
+    end = len(s) - 1
+
+    # check if "s" is a palindrome
+    while (start <= end)  and (s[start] == s[end]):
+        start += 1
+        end -= 1
+
+    if start > end:
+        return len(s), s
+
+    # "s" is not a palindrome, so...
+    l1, s1 = longest_palindrome2(s[1:])
+    l2, s2 = longest_palindrome2(s[:end])
+
+    if l1 > l2:
+        return l1, s1
+    else:
+        return l2, s2
+
+
 ###############################################################################
 
 
@@ -59,12 +87,15 @@ strings = ["", "a", "ab", "abc",
     "elgoog", "google", "apple", "facebook",
     "coffee", "nancy", "pizza", "apple",
     "bosonic", "photon",
-    "aabcdcb", "bananas"]
+    "aabcdcb", "bananas", 
+    "sxgoogys", "sxgoogabcananapq"]
 
 for s in strings:
     #p = longest_palindrome_length(s)
-    p = longest_palindrome(s)
-
-    print("{}, {}".format(s, p))
-
-
+    
+    #p = longest_palindrome(s)
+    #print("{}, {}".format(s, p))
+    
+    length, pal = longest_palindrome2(s)
+    print("{}, {}, {}".format(s, length, pal))
+    
