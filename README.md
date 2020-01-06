@@ -45,6 +45,7 @@ Solutions by me with some help (when needed) from various web sources.
 - 173 - flatten a nested dictionary and namespace keys with periods
 
 ### Dynamic Programming
+- 12 - given staircase with N steps, find number of ways to climb staircase [math]
 - 49 - find max sum of any contiguous subarray in O(n) time
 - 75 - longest increasing subsequence
 - 283 - given int N, return first N regular numbers (evenly divide some power of 60)
@@ -292,13 +293,16 @@ Solutions by me with some help (when needed) from various web sources.
 - 202 - check whether an integer is a palindrome without converting to string
 - 210 - test conjecture that every Collatz sequence eventually reaches one
 - 221 - return nth sevenish number [bits]
-- 233 - implement fib(n), which returns the nth number in the Fibonacci sequence, using only O(1) space
 - 252 - create algo to turn a proper fraction into an Egyption fraction
 - 283 - given int N, return first N regular nums (evenly divide some power of 60)
 - 288 - given n, find num steps to reach Kaprekar's constant from n
 - 350 - given N, find smallest num perfect squares that sum to N
 - 372 - write fn that takes natural num and returns num digits it has (no loops)
 - 380 - impl int division without using division operator in O(log n)
+
+### Math - Formulas
+- 12 - given staircase with N steps, find number of ways to climb staircase [DP]
+- 233 - implement fib(n), which returns the nth number in the Fibonacci sequence, using only O(1) space
 
 ### Math - Distance
 - 150 - given list of points, central point, and int k, find nearest k points from central point
