@@ -25,7 +25,7 @@ Solutions by me with some help (when needed) from various web sources.
 - 137 - implement a bit array
 - 148 - given number of bits n, generate a possible gray code for it
 - 161 - given 32-bit integer, return the number with its bits reversed
-- 221 - return nth sevenish number [math]
+- 221 - return nth sevenish number
 - 249 - given array of ints, find max XOR of any 2 
 - 268 - given 32-bit pos int N, find whether power of 4 faster than O(log n)
 - 310 - find total num of set bits in all ints bw 1 and N
@@ -98,7 +98,7 @@ Solutions by me with some help (when needed) from various web sources.
 ### Rotated arrays/lists
 - 58 - find element in rotated sorted array
 - 126 - write fn that rotates list by k elts; try without creating copy of list; how many swaps or moves?
-- 177 - given linked list and pos int k, rotate list to right by k places
+- 177 - given LL and pos int k, rotate list to right by k places
 - 197 - given array and num k smaller than length of array, rotate array to right k elements in-place
 - 203 - given array sorted and rotated with no duplicates, find min element in O(log N) time
 
@@ -141,7 +141,7 @@ Solutions by me with some help (when needed) from various web sources.
 - 34 - given string, find palindrome that can be made by inserting fewest chars
 - 46 - find longest palindromic contiguous substring
 - 121 - given string, can we delete at most k chars to make a palindrome
-- 157 - given string, determine whether any permutation of it is a palindrome
+- 157 - given string, find if any permutation of it is a palindrome
 - 167 - given list of words, find all pairs of unique indices such that concatenation of two words is a palindrome
 - 181 - given string, split it into as few strings as possible such that each string is a palindrome
 - 396 - given str, return length of longest palindromic subseq in str in O(n^2) time and space
@@ -161,21 +161,20 @@ Solutions by me with some help (when needed) from various web sources.
 
 ### Linked lists
 - 6 - implement XOR linked list
-- 20 - find intersecting node of 2 singly LL's in O(M+N) time and constant space
-- 26 - return kth last element of singly LL in constant space and 1 pass
-- 73 - given head of singly LL, reverse it in-place
-- 78 - given k sorted singly LL's, merge all lists into one sorted singly LL
+- 20 - find intersecting node of 2 LL's in O(M+N) time and constant space
+- 26, 398 - given LL and int k, remove kth last element in constant space and 1 pass
+- 73 - given singly LL, reverse it in-place
+- 78 - given k sorted singly LL's, merge them into one sorted singly LL
 - 104 - determine if doubly LL is palindrome (what if singly linked)
 - 127 - given 2 LL's rep ints, return their sum in same format
-- 131 - given head to singly LL, where each node has random pointer, deep clone the list
-- 145 - given head of singly LL, swap every 2 nodes and return its head
+- 131 - given singly LL, where each node has random pointer, deep clone the list
+- 145 - given singly LL, swap every 2 nodes and return its head
 - 169 - given LL, sort it in O(n log n) time and constant space
 - 177 - given LL and pos int k, rotate list to right by k places
 - 208 - given LL of numbers and pivot k, partition LL so all nodes less than k come before nodes GT or equal to k
 - 256 - given LL, rearrange node values so they appear in alternating low high form
 - 305 - given LL, remove all consec nodes that sum to zero
 - 337 - given LL, uniformly shuffle nodes; what if prioritize space over time
-- 398 - given LL and int k, remove kth node from end of list and return head of list in one pass
 
 ### Queues
 - 53 - implement queue using 2 stacks
@@ -286,17 +285,18 @@ Solutions by me with some help (when needed) from various web sources.
 - 69 - largest product of 3 integers
 - 70 - given pos integer n, return nth perfect number (digits sum to 10)
 - 74 - num times x appears in n-by-n mult table
+- 100 - given infinite 2D grid and seq of points to cover in order, find min num steps
 - 129 - given real number n, find square root of n
 - 138 - find min number of coins to make n cents
-- 156 - given pos int n, find smallest number of squared ints which sum to n
+- 156, 350 - given pos int n, find smallest number of squared ints which sum to n
 - 198 - given set of distinct pos ints, find largest subset such that every pair (i,j) of elements in subset satifies i%j=0 or j%i=0
 - 202 - check whether an integer is a palindrome without converting to string
 - 210 - test conjecture that every Collatz sequence eventually reaches one
-- 221 - return nth sevenish number [bits]
+- 244 - implement Sieve of Eratosthenes
 - 252 - create algo to turn a proper fraction into an Egyption fraction
 - 283 - given int N, return first N regular nums (evenly divide some power of 60)
 - 288 - given n, find num steps to reach Kaprekar's constant from n
-- 350 - given N, find smallest num perfect squares that sum to N
+- 303 - given clock time hhmm, find angle bw hour and minute hands; when is angle zero
 - 372 - write fn that takes natural num and returns num digits it has (no loops)
 - 380 - impl int division without using division operator in O(log n)
 
