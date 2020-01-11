@@ -39,39 +39,40 @@ def reverse_ll(head):
     ### Not necessary since these cases are dealt with correctly
     # if (head is None) or (head.next is None):
     #     return head
-
+    
+    tail = head # for return; not needed for algo
     lag = None
-    scout = head
-
+    
     # start of each loop: head = scout, and lag is behind by one node
-    while scout is not None: 
-        scout = scout.next # store this because head.next will be modified
-        head.next = lag # reverse "next" pointer
+    while head:
+        # temp var to hold head.next, because head.next will be modified
+        scout = head.next
+
+        # reverse "next" pointer
+        head.next = lag 
         
         # advance the pointers without using "next" fields
         lag = head
         head = scout
 
-    return lag
+    return lag, tail
+
 
 """
 Example:
 
-1 -> 2 -> 3 -> 4 -> 5
+1 <- 2 <- 3 <- 4 -> 5
               lag  scout = head
 
-Want:
-1 <- 2 <- 3 <- 4 <- 5
+start of loop:
+    scout = 5
+    head = 5
+    lag = 4
 
-scout = 5
-head = 5
-lag = 4
-
-next loop:
-scout = None
-head.next = 4 (5 -> 4)
-lag = 5
-head = None
+scout = scout.next = None
+head.next = lag = 4 (5 -> 4)
+lag = head = 5
+head = scout = None
 
 return lag (5)
 
@@ -90,7 +91,8 @@ head, tail = build_ll(9) # 1, 2, 3, 4, 5, 6, 7, 8, 9
 print("\nLinked list:")
 print(head)
 
-head = reverse_ll(head)
+head, tail = reverse_ll(head)
+
 print("\nReversed linked list:")
 print(head)
 
