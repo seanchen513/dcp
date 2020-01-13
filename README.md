@@ -165,13 +165,13 @@ Solutions by me with some help (when needed) from various web sources.
 - 26, 398 - given LL and int k, remove kth last element in constant space and 1 pass
 - 73 - given singly LL, reverse it in-place
 - 78 - given k sorted singly LL's, merge them into one sorted singly LL
-- 104 - determine if doubly LL is palindrome (what if singly linked)
+- 104 - given doubly LL, is it palindrome (what if singly linked)
 - 127 - given 2 LL's rep ints, return their sum in same format
-- 131 - given singly LL, where each node has random pointer, deep clone the list
-- 145 - given singly LL, swap every 2 nodes and return its head
+- 131 - given LL where each node has random pointer, deep clone the list
+- 145 - given LL, swap every 2 nodes
 - 169 - given LL, sort it in O(n log n) time and constant space
 - 177 - given LL and pos int k, rotate list to right by k places
-- 208 - given LL of numbers and pivot k, partition LL so all nodes less than k come before nodes GT or equal to k
+- 208 - given LL of numbers and pivot k, partition LL so all nodes less than k come before all other nodes
 - 256 - given LL, rearrange node values so they appear in alternating low high form
 - 305 - given LL, remove all consec nodes that sum to zero
 - 337 - given LL, uniformly shuffle nodes; what if prioritize space over time
