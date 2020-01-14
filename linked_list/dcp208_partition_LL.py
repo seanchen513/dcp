@@ -16,14 +16,13 @@ class Node():
     def __repr__(self):
         return f"{self.val}, {self.next.__repr__()}"
 
-
 """
 Solution #1:
 Every time a node with value < k is found, make it the new head.
 May modify linked list even if all node values are < k.
 O(n) time, O(1) space, single pass, NOT stable
 """
-def segregate(head, k):
+def partition(head: Node, k: int) -> Node:
     node = head
 
     while node and node.next:
@@ -38,13 +37,13 @@ def segregate(head, k):
 
     return head
 
-
 """
 Solution #2:
 Stable (relative order of elements is not changed.)
+This code can be simplified using dummy nodes (solution #3).
 O(n) time, O(1) space.
 """
-def segregate2(head, k):
+def partition2(head: Node, k: int) -> Node:
     if head is None:
         return None
 
@@ -93,24 +92,54 @@ def segregate2(head, k):
 
     return head
 
+"""
+Solution #3: Use dummy nodes to point to lists of smaller and larger nodes.
+O(n) time, O(1) space
+"""
+def partition3(head: Node, k: int) -> Node:
+    # dummy nodes
+    smaller_head = Node(0) # 0 evaluates to False later
+    bigger_head = Node(0)
+    
+    smaller = smaller_head
+    bigger = bigger_head
+    node = head
+
+    while node:
+        if node.val < k:
+            smaller.next = node
+            smaller = smaller.next
+        else:
+            bigger.next = node
+            bigger = bigger.next
+
+        node = node.next
+
+    if bigger:
+        bigger.next = None
+
+    if smaller:
+        smaller.next = bigger_head.next
+
+    return smaller_head.next
 
 ###############################################################################
 
+if __name__ == "__main__":
+    print("\nAll nodes < k moved before all other nodes.")
 
-print("\nAll nodes < k moved before all other nodes.")
+    for k in range(0, 8):
+        #head = None
+        #head = Node(1)
+        
+        #head = Node(1, Node(2))
+        #head = Node(2, Node(1))
 
-for k in range(0, 7):
-    #head = None
-    #head = Node(1)
-    
-    #head = Node(1, Node(2))
-    #head = Node(2, Node(1))
+        #head = Node(5, Node(1, Node(8, Node(0, Node(3))))) # dcp
+        head = Node(5, Node(4, Node(3, Node(2, Node(1)))))
+        
+        #head = partition(head, k) # not stable
+        #head = partition2(head, k) # stable
+        head = partition3(head, k) # stable; use dummy nodes
 
-    #head = Node(5, Node(1, Node(8, Node(0, Node(3))))) # dcp
-    head = Node(5, Node(4, Node(3, Node(2, Node(1)))))
-    
-    #head = segregate(head, k) # not stable
-    head = segregate(head, k) # stable
-
-    print(f"\nk = {k}: {head}")
-
+        print(f"\nk = {k}: {head}")
