@@ -10,7 +10,7 @@ Given the head to a singly linked list, where each node also has a “random” 
 # Clarify: can random pointer point to None?  Assume yes.
 
 class Node():
-    def __init__(self, val, next=None, random=None):
+    def __init__(self, val=None, next=None, random=None):
         self.val = val
         self.next = next
         self.random = random
@@ -32,7 +32,7 @@ class Node():
         
         print()
 
-def build_ll(it):
+def build_ll(it) -> (Node, Node):
     if it is None:
         return None, None
 
@@ -40,17 +40,16 @@ def build_ll(it):
     if type(it) in [range, list]:
         it = iter(it)
 
+    header = Node() # dummy header node
+    tail = header
+
     val = next(it, None)
-    head = Node(val)
-    tail = head
-    
-    val = next(it, None)
-    while val is not None:
+    while val:
         tail.next = Node(val)
         tail = tail.next
         val = next(it, None)
 
-    return head, tail
+    return header.next, tail
 
 def assign_random_pointers(head):
     ### add nodes to array
@@ -172,8 +171,8 @@ if __name__ == "__main__":
 
     print("\nhead: ", head)
 
-    #clone_head = clone(head)
-    clone_head = clone2(head)
+    clone_head = clone(head)
+    #clone_head = clone2(head)
 
     print("\nclone: ", clone_head)
 
