@@ -1,14 +1,14 @@
 """
 dcp131
-LC138 (medium)
+LC138 medium
 
 This question was asked by Snapchat.
 
 Given the head to a singly linked list, where each node also has a “random” pointer that points to anywhere in the linked list, deep clone the list.
-
 """
 
-import pprint
+# Clarify: can random pointer point to None?  Assume yes.
+
 class Node():
     def __init__(self, val, next=None, random=None):
         self.val = val
@@ -19,7 +19,19 @@ class Node():
         return f"{self.val}, {self.next.__repr__()}"
         #return f"{self.val}({self.random.val}), {self.next.__repr__()}"
 
-    
+    def print_random(self):
+        node = self
+
+        while node:
+            if node.random:
+                print(node.random.val, end=", ")
+            else:
+                print("None", end=", ")
+
+            node = node.next
+        
+        print()
+
 def build_ll(it):
     if it is None:
         return None, None
@@ -40,6 +52,28 @@ def build_ll(it):
 
     return head, tail
 
+def assign_random_pointers(head):
+    ### add nodes to array
+    nodes = []
+    node = head
+    while node:
+        nodes.append(node)
+        node = node.next
+
+    # assign random pointers for each node
+    max_randint = len(nodes)
+    node = head
+
+    while node:
+        k = random.randint(0, max_randint)
+        
+        # node.random remains None if k == max_randint:
+        if k < max_randint:
+            node.random = nodes[k]
+        
+        node = node.next
+
+    return head
 
 ###############################################################################
 """
@@ -51,7 +85,6 @@ clones by using this dict.
 O(n) time, O(n) space.
 Doesn't modify original list.
 """
-
 def clone(head):
     if head is None:
         return None
@@ -60,7 +93,7 @@ def clone(head):
     twin = head_twin
     
     twin.random = head # temporarily point to node being cloned
-    d = {head: twin}
+    d = {None: None, head: twin}
 
     while head.next:
         head = head.next
@@ -70,7 +103,7 @@ def clone(head):
         twin.random = head # temporarily point to node being cloned
         d[head] = twin
     
-    ### Go back and fill in the correct randmo pointers by using the dict.
+    ### Go back and fill in the correct random pointers by using the dict.
     twin = head_twin
     while twin:
         twin.random = d[twin.random.random]
@@ -78,16 +111,12 @@ def clone(head):
 
     return head_twin
 
-
-
 ###############################################################################
-
 """
 Solution#2: first create cloned list by interleaving it into the original list.
 
 O(n) time, O(1) space
 """
-
 def clone2(head):
     if head is None:
         return None
@@ -104,10 +133,12 @@ def clone2(head):
     ### copy the random pointers
     node = head
     while node:
-        node.next.random = node.random.next # key line
-        node = node.next.next
+        if node.random:
+            node.next.random = node.random.next # key line
+        else:
+            node.next.random = None
 
-    print(head)
+        node = node.next.next
 
     ### separate the original linked list and its clone
     node = head
@@ -129,43 +160,39 @@ def clone2(head):
 
     return twin_head
 
-
 ###############################################################################
 
 import random
 
-lst = list(range(1,10))
-head, _ = build_ll(lst)
+if __name__ == "__main__":
+    lst = list(range(1,10))
+    head, _ = build_ll(lst)
 
-### add nodes to array
-nodes = []
-node = head
-while node:
-    nodes.append(node)
-    node = node.next
+    assign_random_pointers(head)
 
-### assign random pointers for each node
-node = head
-max_randint = len(nodes) - 1
-while node:
-    node.random = nodes[random.randint(0, max_randint)]
-    node = node.next
+    print("\nhead: ", head)
 
-print("\nhead: ", head)
+    #clone_head = clone(head)
+    clone_head = clone2(head)
 
-#head2 = clone(head)
-head2 = clone2(head)
+    print("\nclone: ", clone_head)
 
-print("\nclone: ", head2)
+    print("\nhead's random pointers:")
+    head.print_random()
 
-### Modify original linked list and check that cloned list is not modified
-node = head
-k = 0
-while node:
-    k -= 1
-    node.val = k
-    node = node.next
+    print("\nclone's random pointers:")
+    clone_head.print_random()
+ 
+    ### Modify original linked list and check that cloned list is not modified
+    
+    print("\n### Modify original linked list and check that cloned list is not modified")
+    
+    node = head
+    k = 0
+    while node:
+        k -= 1
+        node.val = k
+        node = node.next
 
-print("\nmodified original: ", head)
-print("\ncloned list:", head2)
-
+    print("\nmodified original: ", head)
+    print("\ncloned list:", clone_head)
