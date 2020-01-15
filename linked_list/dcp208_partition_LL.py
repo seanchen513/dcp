@@ -1,11 +1,17 @@
 """
 dcp208
+LC86 medium
 
 This problem was asked by LinkedIn.
 
 Given a linked list of numbers and a pivot k, partition the linked list so that all nodes less than k come before nodes greater than or equal to k.
 
 For example, given the linked list 5 -> 1 -> 8 -> 0 -> 3 and k = 3, the solution could be 1 -> 0 -> 5 -> 8 -> 3.
+"""
+
+"""
+LeetCode:
+You should preserve the original relative order of the nodes in each of the two partitions.
 """
 
 class Node():
@@ -98,7 +104,7 @@ O(n) time, O(1) space
 """
 def partition3(head: Node, k: int) -> Node:
     # dummy nodes
-    smaller_head = Node(0) # 0 evaluates to False later
+    smaller_head = Node(0)
     bigger_head = Node(0)
     
     smaller = smaller_head
@@ -115,11 +121,9 @@ def partition3(head: Node, k: int) -> Node:
 
         node = node.next
 
-    if bigger:
-        bigger.next = None
+    bigger.next = None
 
-    if smaller:
-        smaller.next = bigger_head.next
+    smaller.next = bigger_head.next
 
     return smaller_head.next
 
@@ -128,7 +132,7 @@ def partition3(head: Node, k: int) -> Node:
 if __name__ == "__main__":
     print("\nAll nodes < k moved before all other nodes.")
 
-    for k in range(0, 8):
+    for k in range(-1, 8):
         #head = None
         #head = Node(1)
         
