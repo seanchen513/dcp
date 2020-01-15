@@ -11,8 +11,11 @@ LeetCode: Can you do it in O(n) time?
 
 from timeit import default_timer as timer
 
-# Solution #1: brute force
-# O(n^2) time
+"""
+Solution #1: brute force
+O(n^2) time
+LC: TLE
+"""
 def max_xor(arr):
     n = len(arr)
     max_xor = 0
@@ -25,10 +28,11 @@ def max_xor(arr):
 
     return max_xor
 
-
-# Solution #2
-# Assume integers in given "arr" are 32-bit ints
-# O(n) time (to loop over prefixes), O(n) space (for prefixes)
+"""
+Solution #2
+Assume integers in given "arr" are 32-bit ints
+O(n) time (to loop over prefixes), O(n) space (for prefixes)
+"""
 def max_xor2(arr):
     """ For building up the max xor bit-by-bit.
     This will be 0 until we get to first set bit (MSB) for any elt in arr. 
@@ -73,11 +77,12 @@ def max_xor2(arr):
 
     return answer
 
-
-# Solution #2b
-# Same idea as solution #2, but using masks.
-# (and avoiding some Python idioms)
-# This is slower due to not using set comprehension for prefixes.
+"""
+Solution #2b
+Same idea as solution #2, but using masks.
+(and avoiding some Python idioms)
+This is slower due to not using set comprehension for prefixes.
+"""
 def max_xor2b(arr):
     answer = 0
     mask = 0
@@ -104,8 +109,7 @@ def max_xor2b(arr):
 
         prefixes.clear()
 
-    return answer   
-
+    return answer
 
 ###############################################################################
 
@@ -142,37 +146,37 @@ def print_op_matrix(arr, op, op_label='', pad=5):
 
 ###############################################################################
 
-#arr = range(11)
-#arr = range(1000)
-#arr = [5]
-#arr = [2, 3]
-#arr = [1, 2, 4, 8, 16, 32, 64]
+if __name__ == "__main__":
+    #arr = range(11)
+    #arr = range(1000)
+    #arr = [5]
+    #arr = [2, 3]
+    #arr = [1, 2, 4, 8, 16, 32, 64]
 
-#arr = [3, 10, 5, 25, 2, 8] # LC421, max xor is 5 ^ 25 = 28
-arr = [2, 3, 5, 8, 10, 25] # LC421, but sorted
+    #arr = [3, 10, 5, 25, 2, 8] # LC421, max xor is 5 ^ 25 = 28
+    arr = [2, 3, 5, 8, 10, 25] # LC421, but sorted
 
 
-print("\narray = {}".format(arr))
+    print("\narray = {}".format(arr))
 
-start = timer()
-m = max_xor(arr)
-t = timer() - start
-print("\ntime (sol#1)  = {}".format(t))
+    start = timer()
+    m = max_xor(arr)
+    t = timer() - start
+    print("\ntime (sol#1)  = {}".format(t))
 
-start = timer()
-m2 = max_xor2(arr)
-t2 = timer() - start
-print("time (sol#2)  = {}".format(t2))
+    start = timer()
+    m2 = max_xor2(arr)
+    t2 = timer() - start
+    print("time (sol#2)  = {}".format(t2))
 
-start = timer()
-m2b = max_xor2b(arr)
-t2b = timer() - start
-print("time (sol#2b) = {}".format(t2b))
+    start = timer()
+    m2b = max_xor2b(arr)
+    t2b = timer() - start
+    print("time (sol#2b) = {}".format(t2b))
 
-print("\nmax XOR (sol#1)  = {}".format(m))
-print("\nmax XOR (sol#2)  = {}".format(m2))
-print("\nmax XOR (sol#2b) = {}".format(m2b))
+    print("\nmax XOR (sol#1)  = {}".format(m))
+    print("\nmax XOR (sol#2)  = {}".format(m2))
+    print("\nmax XOR (sol#2b) = {}".format(m2b))
 
-if len(arr) < 20:
-    print_op_matrix(arr, lambda x, y: x^y, "^") 
-
+    if len(arr) < 20:
+        print_op_matrix(arr, lambda x, y: x^y, "^") 
