@@ -13,19 +13,19 @@ For example, suppose you are given the input 3 -> 4 -> -7 -> 5 -> -6 -> 6. In th
 # Clarify: should removal of nodes be recursive in that the final list
 # have no consecutive nodes that sum to zero?  Assume yes.
 
-
 class Node():
-    def __init__(self, val, next=None):
+    def __init__(self, val=None, next=None):
         self.val = val
         self.next = next
 
     def __repr__(self):
         return f"{self.val}, {self.next.__repr__()}"
 
-
-# Build singly linked list using values from given iterator "it".
-# Returns both head and tail.
-def build_ll(it):
+"""
+Build singly-linked list using values from given iterator "it".
+Returns both head and tail.
+"""
+def build_ll(it) -> (Node, Node):
     if it is None:
         return None, None
 
@@ -33,18 +33,16 @@ def build_ll(it):
     if type(it) in [range, list]:
         it = iter(it)
 
+    header = Node() # dummy header node
+    tail = header
+
     val = next(it, None)
-    head = Node(val)
-    tail = head
-    
-    val = next(it, None)
-    while val is not None:
+    while val is not None: # "is not None" is necessary since val might be 0
         tail.next = Node(val)
         tail = tail.next
         val = next(it, None)
 
-    return head, tail
-
+    return header.next, tail
 
 def ll_equals(l1, l2):
     while l1 and l2:
@@ -59,11 +57,10 @@ def ll_equals(l1, l2):
 
     return True
 
-
 ###############################################################################
-
 """
 Solution#1: without using an array; no recursion.
+O(n^2) time, O(1) space
 
 Don't have to worry about ever decrementing "start" node
 because if that was ever necessary (because we want to calculate
@@ -114,16 +111,45 @@ def remove_nodes(head):
 
             curr = curr.next 
         
+        else:
         # if start was updated, don't increment it; check it again
-        if sum != 0: 
+        #if sum != 0: 
             start = start.next
 
     return head
 
+def remove_nodes1b(head):
+    header = Node()
+    header.next = head
+
+    start = header # sums do not include value of start node
+
+    while start.next:
+        #print("head = {}, start = {}".format(head.val, start.val))
+        sum = 0
+        curr = start.next
+
+        while curr:
+            sum += curr.val
+            #print("   curr = {}, sum = {}".format(curr.val, sum))
+
+            if sum == 0:
+                start.next = curr.next
+                break
+
+            curr = curr.next 
+        
+        else:
+        # if start was updated, don't increment it; check it again
+        #if sum != 0: 
+            start = start.next
+
+    return header.next
 
 ###############################################################################
 """
 Solution#2: without using an array; recursive
+O(n^2) time, O(n) space for recursion stack
 """
 def remove_nodes2(head):
     ### Deal with sums starting at head. (base case)
@@ -149,7 +175,6 @@ def remove_nodes2(head):
 
     return head
 
-
 ###############################################################################
 
 # For solution#3
@@ -168,9 +193,9 @@ def remove_from_arr(arr):
 
     return arr
 
-
 """
 Solution#3: Convert to array, solve, convert back to linked list.
+O(n^2) time, O(n) space
 """
 def remove_nodes3(head):
     ### 1. Convert linked list to array
@@ -204,7 +229,49 @@ def remove_nodes3(head):
 
     return new_head
 
+###############################################################################
+"""
+Solution#4: Keep track of running sums in a dict.
+This is the fastest solution.
+O(n) time - there's an inner loop for deleting from dict, but the dict entries
+arising from the same node are entered once and deleted at most once.
 
+O(n) space for dict
+
+https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/discuss/367021/Python-Beats-100-TC-and-SC%3A-without-a-dummy-node
+"""
+def remove_nodes4(head):
+    d = {} # dict to map running sums to the node the running sum terminates at
+    sum = 0
+    curr = head
+
+    while curr:
+        sum += curr.val
+
+        if sum == 0:
+            head = curr.next
+            d.clear()
+        else:
+            if sum not in d:
+                d[sum] = curr
+            else: # a previous node had the same running sum
+                # All the nodes starting from pre.next to curr
+                # sum to zero, so we will skip over them.
+                # But we also have to remove their entries from dict "d".
+
+                pre = d[sum] # previous node with same running sum
+                sum2 = sum + pre.next.val
+
+                while sum2 != sum:
+                    node = d[sum2]
+                    del d[sum2]
+                    sum2 += node.next.val
+
+                pre.next = curr.next # skip over all nodes that sum to 0
+        
+        curr = curr.next
+    
+    return head
 
 ###############################################################################
 
@@ -214,26 +281,34 @@ def test(lst, answer={}): # default answer is sentinel for no answer given
     print()
 
     head1, _ = build_ll(lst)
+    head1b = copy.deepcopy(head1)
     head2 = copy.deepcopy(head1)
     head3 = copy.deepcopy(head1)
+    head4 = copy.deepcopy(head1)
 
     #print("\nOriginal linked list:")
     print(head1)
     
-    head1 = remove_nodes(head1)
-    head2 = remove_nodes2(head2)
-    head3 = remove_nodes3(head3)
+    head1 = remove_nodes(head1) # no array, no recursion
+    head1b = remove_nodes1b(head1b) # same as sol#1, but use dummy header node
+    head2 = remove_nodes2(head2) # use recursion, no array
+    head3 = remove_nodes3(head3) # use array
+    head4 = remove_nodes4(head4) # use dict
     
     #print("\nAfter removing consecutive nodes that sum to 0:")
     print("sol#1: ", head1)
+    print("sol#1b: ", head1b)
     print("sol#2: ", head2)
     print("sol#3: ", head3)
+    print("sol#4: ", head4)
 
     if answer != {}:
         head_answer, _ = build_ll(answer)
         assert(ll_equals(head1, head_answer))
+        assert(ll_equals(head1b, head_answer))
         assert(ll_equals(head2, head_answer))
         assert(ll_equals(head3, head_answer))
+        assert(ll_equals(head4, head_answer))
 
 
 def test_lists(lists_answers):
@@ -270,6 +345,9 @@ lists_answers = [
         [1, 2, 4] ), # LC1171 example 2
     ([1, 2, 3, -3, -2], 
        [1] ), # LC1171 example 3
+
+    ([1, 3, 2, -3, -2, 5, 5, -5, 1],
+        [1, 5, 1] ),
 ]
 
 test_lists(lists_answers)
@@ -277,4 +355,3 @@ test_lists(lists_answers)
 ### to test single list:
 lst = [3, 4, -7, 5, -6, 6] # dcp305
 #test(lst)
-
