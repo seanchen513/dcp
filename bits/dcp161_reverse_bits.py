@@ -24,7 +24,9 @@ Solution#1: use string
 Parameter n and return value are in decimal form.
 """
 def reverse_bits(n):
-    s = format(n, '032b')
+    #s = format(n, '032b')
+    s = "{:032b}".format(n)
+    #s = f"{n:032b}"
 
     return int(s[::-1], base=2)
 
@@ -56,14 +58,15 @@ if __name__ == "__main__":
     #n = 4294967293 # 3221225471
     #n = 0 # 0 ???
 
-    #r = reverse_bits(n)
-    r = reverse_bits2(n)
+    r1 = reverse_bits(n)
+    r2 = reverse_bits2(n)
 
     print("\nn = {}".format(n))
-    print("r = {}".format(r))
+    print("r1 (string)    = {}".format(r1))
+    print("r2 (bit manip) = {}".format(r2))
 
-    print("\nn binary = {0:032b}".format(n))
-    print("r binary = {0:032b}".format(r))
+    print("\nn binary  = {:032b}".format(n))
+    print("r1 binary = {:032b}".format(r1))
 
     ### This also works:
     # print("\nn binary = " + format(n, '032b'))
