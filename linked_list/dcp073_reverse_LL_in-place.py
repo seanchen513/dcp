@@ -1,9 +1,23 @@
 """
-dcp#73
+dcp073
 
 This problem was asked by Google.
 
 Given the head of a singly linked list, reverse it in-place.
+"""
+
+"""
+LC206. Reverse Linked List
+Easy
+
+Reverse a singly linked list.
+
+Example:
+Input: 1->2->3->4->5->NULL
+Output: 5->4->3->2->1->NULL
+
+Follow up:
+A linked list can be reversed either iteratively or recursively. Could you implement both?
 """
 
 class Node():
@@ -14,10 +28,11 @@ class Node():
     def __repr__(self):
         return f"{self.val}, {self.next.__repr__()}"
 
-
-# Build singly linked list of length k, with values 1 through k
-# Returns both head and tail
-def build_ll(k):
+"""
+Build singly linked list of length k, with values 1 through k.
+Returns both head and tail.
+"""
+def build_ll_k(k):
     if k == 0:
         return None, None
 
@@ -30,11 +45,12 @@ def build_ll(k):
 
     return head, tail
 
-
 ###############################################################################
-
-# Reverses singly linked list in-place.
-# O(n) time.
+"""
+Reverses singly linked list in-place.
+O(n) time
+O(1) space
+"""
 def reverse_ll(head):
     ### Not necessary since these cases are dealt with correctly
     # if (head is None) or (head.next is None):
@@ -57,7 +73,6 @@ def reverse_ll(head):
 
     return lag, tail
 
-
 """
 Example:
 
@@ -75,24 +90,49 @@ lag = head = 5
 head = scout = None
 
 return lag (5)
-
 """
 
+###############################################################################
+"""
+Solution #2: recursive
+"""
+def reverse_ll_rec(head):
+    if (head is None) or (head.next is None):
+        return head, None
+
+    if head.next.next is None:
+        scout = head.next
+        scout.next = head
+        head.next = None
+        return scout, head
+
+    rev, tail = reverse_ll_rec(head.next)
+
+    tail.next = head
+    tail = head
+
+    head.next = None
+
+    return rev, tail
 
 ###############################################################################
 
-head = None
-head, tail = build_ll(0) # None
-head, tail = build_ll(1) # 1
-head, tail = build_ll(2) # 1, 2
-head, tail = build_ll(3) # 1, 2, 3
-head, tail = build_ll(9) # 1, 2, 3, 4, 5, 6, 7, 8, 9
+if __name__ == "__main__":
+    lists = [
+        0, # None
+        1, # 1 -> None
+        2, # 1 -> 2 -> None
+        3,
+        9,
+    ]
 
-print("\nLinked list:")
-print(head)
+    for k in lists:
+        head, _ = build_ll_k(k)
+        head2, _ = build_ll_k(k)
 
-head, tail = reverse_ll(head)
-
-print("\nReversed linked list:")
-print(head)
-
+        print(f"\nLinked list:\t{head}")
+        
+        rev, _ = reverse_ll(head)
+        rev2, _ = reverse_ll_rec(head2)
+        print(f"Reversed:\t{rev}")
+        print(f"Recursive:\t{rev2}")
