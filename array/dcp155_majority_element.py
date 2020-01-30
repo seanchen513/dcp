@@ -55,8 +55,8 @@ def majority_elt(arr):
             if arr[j] == x:
                 count += 1
             
-            if count > threshold:
-                return arr[j]
+                if count > threshold:
+                    return x
 
 ###############################################################################
 """
@@ -125,14 +125,16 @@ def majority_elt4(arr):
 
     for x in arr:
         if count == 0:
-            maj = x
-
-        if x == maj:
+            maj, count = x, 1
+        elif x == maj:
             count += 1
         else:
             count -= 1
-    
+
     return maj
+
+    # if need to check
+    #return maj if arr.count(maj) > len(arr)//2 else None
 
 # index-based version
 def majority_elt4b(arr):
