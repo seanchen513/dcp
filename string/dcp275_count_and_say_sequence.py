@@ -81,6 +81,30 @@ def count_say(n):
 
 ###############################################################################
 """
+Solution #1b: iterative version of sol #1.
+"""
+def count_say1b(n):
+    s = "1" # base case for n = 1
+
+    for _ in range(n-1):
+        t = ""        
+        prev = s[0]
+        count = 1
+
+        for i in range(1, len(s)):
+            if  s[i] == prev:
+                count += 1
+            else:
+                t += str(count) + prev
+                count = 1
+                prev = s[i]
+
+        s = t + str(count) + prev
+
+    return s
+
+###############################################################################
+"""
 Solution #2: same as sol #1, but use "t" as a list of strings first,
 and then concatenate at the end.
 """
@@ -132,11 +156,39 @@ def count_say3(n):
     return t
     
 ###############################################################################
+"""
+Solution #4: use itertools.groupby(); iterative.
+"""
+import itertools
+
+def count_say4(n):
+    s = "1" # base case for n = 1
+
+    for _ in range(n-1):
+        g = itertools.groupby(s)
+        s = ""
+
+        for digit, group in g:
+            s += str(len(list(group))) + digit
+
+    return s
+
+###############################################################################
+"""
+Other solutions using regular expressions...
+
+https://leetcode.com/problems/count-and-say/discuss/15999/4-5-lines-Python-solutions
+"""
+
+###############################################################################
 
 if __name__ == "__main__":
     #for k in range(1, 31):
     for k in range(1, 11):
         #s = count_say(k)
+        s = count_say1b(k)
         #s = count_say2(k)
-        s = count_say3(k)
+        #s = count_say3(k)
+        #s = count_say4(k)
+        
         print(f"{k:4}: {s}")
