@@ -151,6 +151,7 @@ def majority_elt4b(arr):
             count = 1
 
     return arr[maj_index]
+
 ###############################################################################
 """
 Solution #5: Randomization
@@ -203,6 +204,8 @@ def majority_elt6(arr):
 
 """
 Solution #6: divide and conquer, pass (sub)arrays
+
+https://leetcode.com/problems/majority-element/discuss/51712/Python-different-solutions-(dictionary-bit-manipulation-sorting-divide-and-conquer-brute-force-etc).
 """
 def majority_elt6b(arr):
     if len(arr) == 1:
@@ -233,6 +236,8 @@ Use the bits with count > threshold to form the majority integer.
 
 O(n) time
 O(1) extra space
+
+https://leetcode.com/problems/majority-element/discuss/51712/Python-different-solutions-(dictionary-bit-manipulation-sorting-divide-and-conquer-brute-force-etc).
 """
 def majority_elt7(arr):
     ### 1. Count the set bits
